@@ -2,6 +2,7 @@
 
     <a class="nav-link" href="index.html">
        <img src="imagenes/logo.png" alt="logo"></a>
+
      <ul class="navbar-nav">
    
            <li class="nav-item">
