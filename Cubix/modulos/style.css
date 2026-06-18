@@ -1,0 +1,38 @@
+body {
+
+    background-color: lightblue;
+    
+
+}
+
+.index {
+
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;  
+    
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: rgb(250, 250, 170);
+
+    
+}
+.index img {
+
+    display: center;
+    width:50%;
+
+}
+.barra {
+    
+    border-radius: 25px;
+    background-color: white;
+    border: 1px black;
+
+}
+
+.barra img {
+
+    width:50px;
+
+}
