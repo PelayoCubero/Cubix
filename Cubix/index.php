@@ -15,5 +15,8 @@ include("modulos/head.php"); ?>
   <img  src="imagenes/logo.png" alt="logo">
 
     </div>
-</body>
+
+    
+    <?php include ("modulos/footer.php");?>
+  </body>
 </html>
