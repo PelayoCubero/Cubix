@@ -7,22 +7,15 @@
 
     <div class="timer-layout">
       <div class="card timer-stage">
-        <div class="scramble-line" id="timerScramble">R2 U' F L2 D B' R U2 F' L R2 D' U B2 R' F2 U L2 D'</div>
+        <div class="scramble-line" id="timerScramble"></div>
         <div class="time-display" id="timeDisplay">00.00</div>
-        <div class="timer-hint" id="timerHint">Pulsa <b>espacio</b> o el botón para iniciar la inspección</div>
+        <div class="timer-hint" id="timerHint">Pulsa espacio iniciar</div>
         <div class="timer-actions">
           <button class="btn btn-primary" id="startBtn" onclick="toggleTimer()">Iniciar</button>
           <button class="btn btn-outline" onclick="newScramble()">Nueva mezcla</button>
         </div>
 
-        <div class="session-chips">
-          <span class="chip active">3x3x3</span>
-          <span class="chip">2x2x2</span>
-          <span class="chip">4x4x4</span>
-          <span class="chip">Pyraminx</span>
-          <span class="chip">One-Handed</span>
-          <span class="chip">Skewb</span>
-        </div>
+
       </div>
 
       <div>
@@ -46,7 +39,6 @@
         <div class="card">
           <h2>Últimos resueltos</h2>
           <ul class="solve-list" id="solvesList">
-            <li><span class="n">—</span><span>Resuelve algo para empezar tu historial</span></li>
           </ul>
         </div>
       </div>

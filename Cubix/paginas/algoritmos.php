@@ -6,7 +6,6 @@
 
     <div class="method-tabs">
       <button class="tab active" data-method="cfop">CFOP</button>
-      <button class="tab" data-method="other">Roux / ZZ (próximamente)</button>
     </div>
 
     <div id="cfopPanel">

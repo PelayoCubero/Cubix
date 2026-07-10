@@ -2,16 +2,14 @@
 <section class="view active" id="dashboard">
 <div class="view-header">
     <div class="eyebrow">Actividad de la comunidad</div>
-    <h1>Buenas, Mateo. Esto se mueve hoy.</h1>
+    <h1>Buenas, esto se mueve hoy</h1>
 </div>
 
 <div class="hero-scramble">
     <div>
-    <div class="label">Desafío del día · mismas condiciones para todos</div>
-    <div class="scramble" id="dailyScramble">R2 U' F L2 D B' R U2 F' L R2 D' U B2 R' F2 U L2 D'</div>
-    <div class="meta">1.204 cuberos ya lo han intentado · quedan 14h 22m</div>
+        <div class="label">Recuerda que si no practicas no mejoraras, dale caña</div>
     </div>
-    <button class="btn btn-primary" onclick="showView('timer')">Resolverlo →</button>
+    <button class="btn btn-primary" onclick="showView('timer')">Empieza a entrenar</button>
 </div>
 
 <div class="dash-grid">

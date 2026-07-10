@@ -1,13 +1,3 @@
-// ---------- Navegación entre ventanas ----------
-  function showView(id){
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    document.querySelectorAll('.navbtn').forEach(b => b.classList.toggle('active', b.dataset.view === id));
-  }
-  document.querySelectorAll('.navbtn').forEach(btn=>{
-    btn.addEventListener('click', ()=> showView(btn.dataset.view));
-  });
-
   // ---------- Scramble generator ----------
   const FACES = ['R',"R'",'R2','L',"L'",'L2','U',"U'",'U2','D',"D'",'D2','F',"F'",'F2','B',"B'",'B2'];
   function faceOf(m){ return m[0]; }
@@ -24,6 +14,16 @@
     const s = genScramble(20);
     document.getElementById('timerScramble').textContent = s;
   }
+
+// ---------- Navegación entre ventanas ----------
+  function showView(id){
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.navbtn').forEach(b => b.classList.toggle('active', b.dataset.view === id));
+  }
+  document.querySelectorAll('.navbtn').forEach(btn=>{
+    btn.addEventListener('click', ()=> showView(btn.dataset.view), newScramble());
+  });
 
   // ---------- Cronómetro funcional ----------
   let running = false, startTs = 0, rafId = null;
@@ -130,3 +130,4 @@
       el.appendChild(sq);
     });
   });
+  
