@@ -45,7 +45,7 @@
       startTs = Date.now();
       timeDisplay.classList.add('running');
       startBtn.textContent = 'Detener';
-      timerHint.innerHTML = 'Resolviendo… pulsa <b>espacio</b> o el botón para parar';
+      timerHint.innerHTML = 'Resolviendo… pulsa <b>espacio</b> parar';
       tick();
     } else {
       running = false;
