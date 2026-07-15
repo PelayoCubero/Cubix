@@ -15,6 +15,7 @@
           <button class="btn btn-outline" onclick="newScramble()">Nueva mezcla</button>
         </div>
 
+        <br><div class="pb-tag">tu record es <b>8.42s</b> rompelo</div>
 
       </div>
 
