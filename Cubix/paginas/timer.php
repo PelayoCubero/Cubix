@@ -1,6 +1,5 @@
   <section class="view" id="timer">
     <div class="view-header">
-      <div class="eyebrow">Cronómetro y sesión</div>
       <h1>Cronómetro</h1>
     </div>
 

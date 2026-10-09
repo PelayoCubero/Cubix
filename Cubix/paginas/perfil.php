@@ -1,6 +1,5 @@
   <section class="view" id="perfil">
     <div class="view-header">
-      <div class="eyebrow">Tu identidad de cubero</div>
       <h1>Perfil</h1>
     </div>
 
@@ -8,8 +7,8 @@
       <div class="avatar-big">MR</div>
       <div>
         <div class="pname">Mateo Ruiz</div>
-        <div class="phandle">@mateo_cubes · WCA ID 2019RUIZ04</div>
-        <span class="badge-inline">Sub-15 alcanzado</span>
+        <div class="phandle">WCA ID 2019RUIZ04</div>
+        <span class="badge-inline">20.62 record</span>
       </div>
     </div>
 
@@ -44,16 +43,16 @@
       </div>
     </div>
 
-    <h2>Historial de récords personales</h2>
+    <h2>Historial tiempos</h2>
     <div class="card">
       <table>
-        <thead><tr><th>Categoría</th><th>Tiempo</th><th>Fecha</th></tr></thead>
+        <thead><tr><th>Mezcla</th><th>Tiempo</th><th>Fecha</th></tr></thead>
         <tbody>
-          <tr><td>3x3x3 single</td><td class="mono">8.94</td><td>28 jun 2026</td></tr>
-          <tr><td>3x3x3 Ao5</td><td class="mono">11.02</td><td>15 jun 2026</td></tr>
-          <tr><td>2x2x2 single</td><td class="mono">2.31</td><td>3 may 2026</td></tr>
-          <tr><td>One-Handed single</td><td class="mono">17.60</td><td>22 abr 2026</td></tr>
-          <tr><td>Pyraminx single</td><td class="mono">4.05</td><td>9 mar 2026</td></tr>
+          <tr><td>F U2 F L2 R D2 U R F' U R F' D2 L' F R2 U' L2 U R2  </td><td class="mono">8.94 </td><td>28 jun 2026</td></tr>
+          <tr><td>U' L' B2 F' U2 L2 B L2 B D2 B2 F2 L R' L B R B L F  </td><td class="mono">11.02</td><td>15 jun 2026</td></tr>
+          <tr><td>R' B F L U F' B' U R D B' U B D2 R D2 R2 B' R U'    </td><td class="mono">2.31 </td><td> 3 may 2026</td></tr>
+          <tr><td>L2 R U2 L' R2 B' U F2 U2 B' L U R F2 L' R2 F2 B' U R</td><td class="mono">17.60</td><td>22 abr 2026</td></tr>
+          <tr><td>D' B F B L D B' L2 D' B F R' L' U2 R2 L2 D R' B D   </td><td class="mono">4.05 </td><td>9 mar 2026</td></tr>
         </tbody>
       </table>
     </div>

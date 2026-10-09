@@ -1,6 +1,5 @@
 <section class="view" id="algos">
     <div class="view-header">
-      <div class="eyebrow">Biblioteca de entrenamiento</div>
       <h1>Algoritmos</h1>
     </div>
     

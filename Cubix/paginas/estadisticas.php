@@ -1,6 +1,5 @@
  <section class="view" id="estadisticas">
     <div class="view-header">
-      <div class="eyebrow">Comunidad</div>
       <h1>Estadisticas</h1>
     </div>
 
