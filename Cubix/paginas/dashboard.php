@@ -1,7 +1,7 @@
-
 <section class="view active" id="dashboard">
 <div class="view-header">
     <h1>Buenas, esto se mueve hoy</h1>
+
 </div>
 
 <div class="hero-scramble">
@@ -51,16 +51,21 @@
     <aside>
     <div class="card widget">
         <h2>Amigos</h2>
-        <div class="rank-row"><span class="rank-num">1</span><span class="rname">Lucía Campos</span><span class="rtime">8.42</span></div>
-        <div class="rank-row"><span class="rank-num">2</span><span class="rname">Mateo Ruiz</span><span class="rtime">11.03</span></div>
-        <div class="rank-row"><span class="rank-num">3</span><span class="rname">Diego Paz</span><span class="rtime">12.77</span></div>
-        <div class="rank-row"><span class="rank-num">4</span><span class="rname">Lucía Campos</span><span class="rtime">8.42</span></div>
-        <div class="rank-row"><span class="rank-num">5</span><span class="rname">Mateo Ruiz</span><span class="rtime">11.03</span></div>
-        <div class="rank-row"><span class="rank-num">6</span><span class="rname">Diego Paz</span><span class="rtime">12.77</span></div>
-        <div class="rank-row"><span class="rank-num">7</span><span class="rname">Lucía Campos</span><span class="rtime">8.42</span></div>
-        <div class="rank-row"><span class="rank-num">8</span><span class="rname">Mateo Ruiz</span><span class="rtime">11.03</span></div>
-        <div class="rank-row"><span class="rank-num">9</span><span class="rname">Diego Paz</span><span class="rtime">12.77</span></div>
-        <div class="rank-row"><span class="rank-num">10</span><span class="rname">Nico Paz</span><span class="rtime">15.77</span></div>
+
+        <?php
+        $sql = "SELECT Usuario.Nombre as nom, Usuario.Apellido as ape FROM Amigo JOIN Usuario ON Amigo.ID_Amigo = Usuario.ID_Usuario WHERE Amigo.ID_Usuario = 1;";
+        $c = new Conexion();
+        $c->conectar();
+        $datos = $c->ejecutarCosulta($sql);
+
+        foreach($datos as $item){
+    
+            echo "<div class=\"rank-row\"><span class=\"rank-num\"></span><span class=\"rname\"> " . $item["nom"] . " " . $item["ape"] . "</span><span class=\"rtime\">0.0</span></div>";
+            
+        }
+
+        ?>
+
     </div>
 
     

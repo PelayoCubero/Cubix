@@ -45,7 +45,7 @@
       startTs = Date.now();
       timeDisplay.classList.add('running');
       startBtn.textContent = 'Detener';
-      timerHint.innerHTML = 'Resolviendo… pulsa <b>espacio</b> parar';
+      timerHint.innerHTML = 'Resolviendo… pulsa <b>espacio</b> para detener';
       tick();
     } else {
       running = false;
@@ -54,7 +54,7 @@
       timeDisplay.classList.remove('running');
       timeDisplay.textContent = fmt(elapsed);
       startBtn.textContent = 'Iniciar';
-      timerHint.innerHTML = 'Pulsa <b>espacio</b> o el botón para iniciar la inspección';
+      timerHint.innerHTML = 'Pulsa <b>espacio</b> o el botón para iniciar';
       registerSolve(elapsed/1000);
       newScramble();
     }

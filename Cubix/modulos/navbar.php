@@ -11,8 +11,8 @@
     <button class="navbtn active" data-view="dashboard"><span class="navdot" style="background:var(--white-face)"></span>Dashboard</button>
     <button class="navbtn" data-view="timer"><span class="navdot" style="background:var(--yellow-face)"></span>Cronómetro</button>
     <button class="navbtn" data-view="algos"><span class="navdot" style="background:var(--green-face)"></span>Algoritmos</button>
-    <button class="navbtn" data-view="perfil"><span class="navdot" style="background:var(--blue-face)"></span>Perfil</button>
     <button class="navbtn" data-view="estadisticas"><span class="navdot" style="background:var(--red-face)"></span>Estadisticas</button>
+    <button class="navbtn" data-view="perfil"><span class="navdot" style="background:var(--blue-face)"></span>Perfil</button>
   </nav>
 
   <div class="sidebar-footer">

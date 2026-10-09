@@ -1,0 +1,10 @@
+INSERT INTO `usuario` (`ID_Usuario`, `Nombre`,`Apellido`, `Correo`, `Contraseña`, `WCA`) VALUES (NULL, 'David', 'Pelayo', '2000@gmail.com', 'pass', NULL);
+INSERT INTO `usuario` (`ID_Usuario`, `Nombre`,`Apellido`, `Correo`, `Contraseña`, `WCA`) VALUES (NULL, 'Mateo', 'Ruggeri', '2001@gmail.com', 'pass', NULL);
+INSERT INTO `usuario` (`ID_Usuario`, `Nombre`,`Apellido`, `Correo`, `Contraseña`, `WCA`) VALUES (NULL, 'Diego', 'Paz', '2002@gmail.com', 'pass', NULL);
+INSERT INTO `usuario` (`ID_Usuario`, `Nombre`,`Apellido`, `Correo`, `Contraseña`, `WCA`) VALUES (NULL, 'Lucía', 'Campos', '2003@gmail.com', 'pass', NULL);
+INSERT INTO `usuario` (`ID_Usuario`, `Nombre`,`Apellido`, `Correo`, `Contraseña`, `WCA`) VALUES (NULL, 'Nico', 'Paz', '2004@gmail.com', 'pass', NULL);
+INSERT INTO `usuario` (`ID_Usuario`, `Nombre`,`Apellido`, `Correo`, `Contraseña`, `WCA`) VALUES (NULL, 'Noa', 'Reyes', '2005@gmail.com', 'pass', NULL);
+INSERT INTO `usuario` (`ID_Usuario`, `Nombre`,`Apellido`, `Correo`, `Contraseña`, `WCA`) VALUES (NULL, 'Jorge', 'Mena', '2006@gmail.com', 'pass', NULL);
+INSERT INTO `usuario` (`ID_Usuario`, `Nombre`,`Apellido`, `Correo`, `Contraseña`, `WCA`) VALUES (NULL, 'Diego', 'Ruiz', '2007@gmail.com', 'pass', NULL);
+INSERT INTO `usuario` (`ID_Usuario`, `Nombre`,`Apellido`, `Correo`, `Contraseña`, `WCA`) VALUES (NULL, 'David', 'Campos', '2008@gmail.com', 'pass', NULL);
+INSERT INTO `usuario` (`ID_Usuario`, `Nombre`,`Apellido`, `Correo`, `Contraseña`, `WCA`) VALUES (NULL, 'Sara', 'Saez', '2009@gmail.com', 'pass', NULL);

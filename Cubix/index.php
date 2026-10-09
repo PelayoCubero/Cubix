@@ -3,6 +3,8 @@
 <head>
 
 <?php include ("modulos/head.php");?>
+<?php include ("./Conexion/Conexion.php");?>
+
 
 </head>
 <body>

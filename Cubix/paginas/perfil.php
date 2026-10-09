@@ -44,30 +44,6 @@
       </div>
     </div>
 
-    <h2>Logros</h2>
-    <div class="badge-grid">
-      <div class="medal">
-        <div class="medal-ring" style="background:var(--green-face)">1K</div>
-        <div class="mlabel">1.000 resoluciones</div>
-      </div>
-      <div class="medal">
-        <div class="medal-ring" style="background:var(--yellow-face)">S15</div>
-        <div class="mlabel">Sub-15 en 3x3</div>
-      </div>
-      <div class="medal">
-        <div class="medal-ring" style="background:var(--orange-face)">18d</div>
-        <div class="mlabel">Racha de práctica</div>
-      </div>
-      <div class="medal locked">
-        <div class="medal-ring" style="background:var(--text-faint)">S10</div>
-        <div class="mlabel"> Sub-10 en 3x3</div>
-      </div>
-      <div class="medal locked">
-        <div class="medal-ring" style="background:var(--text-faint)">F2L</div>
-        <div class="mlabel"> F2L intuitivo dominado</div>
-      </div>
-    </div>
-
     <h2>Historial de récords personales</h2>
     <div class="card">
       <table>

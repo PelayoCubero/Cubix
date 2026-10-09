@@ -3,11 +3,7 @@
       <div class="eyebrow">Biblioteca de entrenamiento</div>
       <h1>Algoritmos</h1>
     </div>
-
-    <div class="method-tabs">
-      <button class="tab active" data-method="cfop">CFOP</button>
-    </div>
-
+    
     <div id="cfopPanel">
       <div class="stage-tabs">
         <button class="tab stage active" data-stage="f2l">F2L</button>
@@ -83,23 +79,5 @@
 
       </div>
     </div>
-
-    <div class="flash-section">
-      <div class="flashcard" id="flashcard" onclick="this.classList.toggle('flipped')">
-        <div class="flashcard-inner">
-          <div class="flash-face front">
-            <div class="fq">Tu caso más débil</div>
-            <div style="font-family:var(--font-display);font-weight:700;font-size:18px;">OLL 21 · Cruz</div>
-            <div style="font-size:12px;color:var(--text-faint)">toca para ver la solución</div>
-          </div>
-          <div class="flash-face back">
-            <div class="fq">Solución</div>
-            <div class="algo-notation" style="font-size:12.5px">R U2 R2 U' R2 U' R2 U2 R</div>
-          </div>
-        </div>
-      </div>
-      <div style="max-width:340px;font-size:13px;color:var(--text-dim)">
-        Repetición espaciada: este caso vuelve a aparecer porque fallaste 3 de tus últimas 5 repeticiones.
-      </div>
-    </div>
   </section>
+  
