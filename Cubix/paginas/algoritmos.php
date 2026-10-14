@@ -19,6 +19,30 @@
           </div>
           <div class="algo-notation">U R U' R'</div>
         </div>
+                
+        <div class="algo-card show" data-stage="f2l">
+          <div class="top">
+            <div class="net" id="net-f2l-1"></div>
+            <div><div class="algo-name">Inserción básica</div><div class="algo-stage">F2L · par ya emparejado</div></div>
+          </div>
+          <div class="algo-notation">U R U' R'</div>
+        </div>
+                
+        <div class="algo-card show" data-stage="f2l">
+          <div class="top">
+            <div class="net" id="net-f2l-1"></div>
+            <div><div class="algo-name">Inserción básica</div><div class="algo-stage">F2L · par ya emparejado</div></div>
+          </div>
+          <div class="algo-notation">U R U' R'</div>
+        </div>
+
+        <div class="algo-card show" data-stage="f2l">
+          <div class="top">
+            <div class="net" id="net-f2l-1"></div>
+            <div><div class="algo-name">Inserción básica</div><div class="algo-stage">F2L · par ya emparejado</div></div>
+          </div>
+          <div class="algo-notation">U R U' R'</div>
+        </div>
 
         <div class="algo-card show" data-stage="f2l">
           <div class="top">
