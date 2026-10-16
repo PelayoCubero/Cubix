@@ -1,3 +1,24 @@
+<?php
+
+  $sql = "SELECT CASE WHEN Tiempo.Tiempo >= '00:01:00' THEN CONCAT( TIME_FORMAT(Tiempo.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(Tiempo.Tiempo, '%f'), 2) ) ELSE CONCAT( TIME_FORMAT(Tiempo.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(Tiempo.Tiempo, '%f'), 2) ) END AS tiempo FROM Usuario JOIN Tiempo ON Usuario.ID_Usuario = Tiempo.ID_Usuario JOIN Cubo ON Tiempo.ID_Cubo = Cubo.ID_Cubo WHERE Usuario.ID_Usuario = 1 AND Tiempo.Tiempo = ( SELECT MIN(T2.Tiempo) FROM Tiempo T2 WHERE T2.ID_Usuario = ? );";
+  $c = new Conexion();
+  $c->conectar();
+
+  $datos = $c->ejecutarCosulta($sql, [$_SESSION["id_usuario"]]);
+  $tiempo = NULL;
+ 
+  foreach($datos as $item){
+
+    $tiempo = $item["tiempo"];
+      
+  }
+
+  $c->desconectar();
+
+  if($tiempo == NULL){$tiempo = 0.0;}
+
+?>
+
   <section class="view" id="timer">
     <div class="view-header">
       <h1>Cronómetro</h1>
@@ -13,7 +34,7 @@
           <button class="btn btn-outline" onclick="newScramble()">Nueva mezcla</button>
         </div>
 
-        <br><div class="pb-tag">tu record es <b>8.42s</b> rompelo</div>
+        <br><div class="pb-tag">tu record es <b><?php echo $tiempo ?></b> rompelo</div>
 
       </div>
 
@@ -36,3 +57,4 @@
     </div>
 
   </section>
+

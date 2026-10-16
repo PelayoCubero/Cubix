@@ -88,7 +88,7 @@ CREATE TABLE Usuario_Algoritmo (
 CREATE TABLE Tiempo (
 
     ID_Tiempo       INT AUTO_INCREMENT PRIMARY KEY,
-    Tiempo          TIME NOT NULL,
+    Tiempo          TIME(2) NOT NULL,
     Fecha           DATE NOT NULL,
     Mezcla          VARCHAR(100) NOT NULL,
     Mas_2           BOOLEAN NOT NULL,

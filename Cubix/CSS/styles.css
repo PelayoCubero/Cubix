@@ -269,3 +269,33 @@
     .dash-grid, .timer-layout, .comp-grid{ grid-template-columns:1fr; }
     .time-display{ font-size:56px; }
   }
+
+
+
+  .login-card{ width:100%; max-width:380px; background:var(--bg-elev); border:1px solid var(--border); border-radius:14px; padding:34px 30px; }
+  .login-logo{ display:flex; flex-direction:column; align-items:center; gap:10px; margin-bottom:26px; }
+  .login-logo img{ width:84px; height:84px; object-fit:contain; border-radius:12px; background:#fff; }
+  .login-logo .brand-name{ font-size:24px; }
+  .login-sub{ color:var(--text-dim); font-size:13.5px; text-align:center; margin-top:-4px; }
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-faint); margin-bottom:6px; }
+  .field input{ width:100%; background:var(--bg-elev-2); border:1px solid var(--border); border-radius:8px; padding:11px 12px; color:var(--text); font-family:var(--font-body); font-size:14.5px; outline:none; transition:border-color .15s; }
+  .field input:focus{ border-color:var(--yellow-face); }
+  .login-error{ background:rgba(255,90,95,.1); border:1px solid var(--red-face); color:var(--red-face); border-radius:8px; padding:10px 12px; font-size:13px; margin-bottom:16px; }
+  .login-card .btn{ width:100%; margin-top:6px; }
+
+  .login-card{ width:100%; max-width:420px; background:var(--bg-elev); border:1px solid var(--border); border-radius:14px; padding:34px 30px; }
+  .login-logo{ display:flex; flex-direction:column; align-items:center; gap:10px; margin-bottom:26px; }
+  .login-logo img{ width:84px; height:84px; object-fit:contain; border-radius:12px; background:#fff; }
+  .login-logo .brand-name{ font-size:24px; }
+  .login-sub{ color:var(--text-dim); font-size:13.5px; text-align:center; margin-top:-4px; }
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-faint); margin-bottom:6px; }
+  .field input{ width:100%; background:var(--bg-elev-2); border:1px solid var(--border); border-radius:8px; padding:11px 12px; color:var(--text); font-family:var(--font-body); font-size:14.5px; outline:none; transition:border-color .15s; }
+  .field input:focus{ border-color:var(--yellow-face); }
+  .field .opt{ text-transform:none; letter-spacing:0; color:var(--text-faint); }
+  .login-error{ background:rgba(255,90,95,.1); border:1px solid var(--red-face); color:var(--red-face); border-radius:8px; padding:10px 12px; font-size:13px; margin-bottom:16px; }
+  .login-card .btn{ width:100%; margin-top:6px; }
+  .alt-link{ text-align:center; font-size:13px; color:var(--text-dim); margin-top:18px; }
+  .alt-link a{ color:var(--yellow-face); font-weight:600; }

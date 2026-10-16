@@ -1,3 +1,4 @@
+
 <section class="view active" id="dashboard">
 <div class="view-header">
     <h1>Buenas, esto se mueve hoy</h1>
@@ -53,16 +54,18 @@
         <h2>Amigos</h2>
 
         <?php
-        $sql = "SELECT Usuario.Nombre as nom, Usuario.Apellido as ape FROM Amigo JOIN Usuario ON Amigo.ID_Amigo = Usuario.ID_Usuario WHERE Amigo.ID_Usuario = 1;";
+        $sql = "SELECT Usuario.Nombre as nom, Usuario.Apellido as ape FROM Amigo JOIN Usuario ON Amigo.ID_Amigo = Usuario.ID_Usuario WHERE Amigo.ID_Usuario = ?;";
         $c = new Conexion();
         $c->conectar();
-        $datos = $c->ejecutarCosulta($sql);
+        $datos = $c->ejecutarCosulta($sql, [$_SESSION["id_usuario"]]);
 
         foreach($datos as $item){
     
             echo "<div class=\"rank-row\"><span class=\"rank-num\"></span><span class=\"rname\"> " . $item["nom"] . " " . $item["ape"] . "</span><span class=\"rtime\">0.0</span></div>";
             
         }
+
+        $c->desconectar();
 
         ?>
 

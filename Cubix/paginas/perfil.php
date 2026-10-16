@@ -1,14 +1,41 @@
+  <?php
+
+  $sql = "SELECT usuario.WCA_ID as wca, CASE WHEN Tiempo.Tiempo >= '00:01:00' THEN CONCAT( TIME_FORMAT(Tiempo.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(Tiempo.Tiempo, '%f'), 2) ) ELSE CONCAT( TIME_FORMAT(Tiempo.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(Tiempo.Tiempo, '%f'), 2) ) END AS tiempo FROM Usuario JOIN Tiempo ON Usuario.ID_Usuario = Tiempo.ID_Usuario JOIN Cubo ON Tiempo.ID_Cubo = Cubo.ID_Cubo WHERE Usuario.ID_Usuario = 1 AND Tiempo.Tiempo = ( SELECT MIN(T2.Tiempo) FROM Tiempo T2 WHERE T2.ID_Usuario = ? );";
+  $c = new Conexion();
+  $c->conectar();
+
+  $datos = $c->ejecutarCosulta($sql, [$_SESSION["id_usuario"]]);
+  $tiempo = NULL;
+  $wca = NULL;
+ 
+  foreach($datos as $item){
+
+    $tiempo = $item["tiempo"];
+    $wca = $item["wca"];
+
+      
+  }
+
+  $c->desconectar();
+
+  if($tiempo == NULL){$tiempo = 0.0;}
+  if($wca == NULL){$wca = " ";}
+  else {$wca = "WCA ID " . $wca;}
+
+
+?>
+  
   <section class="view" id="perfil">
     <div class="view-header">
       <h1>Perfil</h1>
     </div>
 
     <div class="profile-head">
-      <div class="avatar-big">MR</div>
+      <div class="avatar-big"><?php echo $_SESSION["nombre"][0] . $_SESSION["apellido"][0] ?></div>
       <div>
-        <div class="pname">Mateo Ruiz</div>
-        <div class="phandle">WCA ID 2019RUIZ04</div>
-        <span class="badge-inline">20.62 record</span>
+        <div class="pname"><?php echo $_SESSION["nombre"] . " " .$_SESSION["apellido"] ?></div>
+        <div class="phandle"><?php echo $wca ?></div>
+        <span class="badge-inline"><?php echo $tiempo ?> record</span>
       </div>
     </div>
 
@@ -46,13 +73,31 @@
     <h2>Historial tiempos</h2>
     <div class="card">
       <table>
-        <thead><tr><th>Mezcla</th><th>Tiempo</th><th>Fecha</th></tr></thead>
+        <thead><tr><th>Mezcla</th><th>Tiempo</th><th>Fecha</th><th>Cubo</th></tr></thead>
         <tbody>
-          <tr><td>F U2 F L2 R D2 U R F' U R F' D2 L' F R2 U' L2 U R2  </td><td class="mono">8.94 </td><td>28 jun 2026</td></tr>
-          <tr><td>U' L' B2 F' U2 L2 B L2 B D2 B2 F2 L R' L B R B L F  </td><td class="mono">11.02</td><td>15 jun 2026</td></tr>
-          <tr><td>R' B F L U F' B' U R D B' U B D2 R D2 R2 B' R U'    </td><td class="mono">2.31 </td><td> 3 may 2026</td></tr>
-          <tr><td>L2 R U2 L' R2 B' U F2 U2 B' L U R F2 L' R2 F2 B' U R</td><td class="mono">17.60</td><td>22 abr 2026</td></tr>
-          <tr><td>D' B F B L D B' L2 D' B F R' L' U2 R2 L2 D R' B D   </td><td class="mono">4.05 </td><td>9 mar 2026</td></tr>
+
+         <?php
+
+            $sql = "SELECT CASE WHEN T.Tiempo >= '00:01:00' THEN CONCAT( TIME_FORMAT(T.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2) ) ELSE CONCAT( TIME_FORMAT(T.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2) ) END AS tiempo, C.Marca AS marca, C.Modelo AS modelo, T.Mezcla AS mezcla, T.Fecha AS fecha FROM Tiempo T JOIN Cubo C ON T.ID_Cubo = C.ID_Cubo WHERE T.ID_Usuario = ? ORDER BY T.Fecha DESC LIMIT 5;";
+            $c = new Conexion();
+            $c->conectar();
+
+            $datos = $c->ejecutarCosulta($sql, [$_SESSION["id_usuario"]]);
+            $tiempo = NULL;
+            $wca = NULL;
+          
+            foreach($datos as $item){
+
+            echo "<tr><td>" .$item["mezcla"]. "</td><td class=\"mono\"> ".$item["tiempo"]. " </td><td>" .$item["fecha"]. "</td><td>" .$item["marca"]." ".$item["modelo"]. "</td></tr>";
+                
+            }
+
+            $c->desconectar();
+
+
+          ?>
+
+
         </tbody>
       </table>
     </div>

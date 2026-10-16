@@ -5,7 +5,7 @@
         private string $dsn;
         private string $usuario;
         private string $passwd;
-        private PDO $conexion;
+        private ?PDO $conexion;
 
 
         public function __construct($ruta = "Conexion/secure/config.php") {
@@ -42,7 +42,11 @@
         }
 
 
+        public function desconectar(): void {
 
+            $this->conexion = null; 
+
+        }
     }
 
 
