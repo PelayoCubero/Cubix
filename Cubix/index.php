@@ -20,10 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $c = new Conexion();
         $c->conectar();
-        $res = $c->ejecutarCosulta(
-            "SELECT ID_Usuario AS id, Nombre AS nom, Apellido AS ape, Contraseña AS pass FROM Usuario WHERE Correo = ?",
-            [$correo]
-        );
+        $res = $c->ejecutarCosulta("SELECT ID_Usuario AS id, Nombre AS nom, Apellido AS ape, Contraseña AS pass FROM Usuario WHERE Correo = ?",[$correo]);
         $c->desconectar();
 
         if (!empty($res) && hash_equals((string)$res[0]['pass'], $password)) {

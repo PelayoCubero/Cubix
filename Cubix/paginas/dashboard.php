@@ -51,17 +51,19 @@
 
     <aside>
     <div class="card widget">
-        <h2>Amigos</h2>
+        <h2>Amigos - Ultimos registros</h2>
 
         <?php
-        $sql = "SELECT Usuario.Nombre as nom, Usuario.Apellido as ape FROM Amigo JOIN Usuario ON Amigo.ID_Amigo = Usuario.ID_Usuario WHERE Amigo.ID_Usuario = ?;";
+        $sql = "SELECT Usuario.Nombre AS nom, Usuario.Apellido AS ape, CASE WHEN T.Tiempo >= '00:01:00' THEN CONCAT( TIME_FORMAT(T.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2) ) ELSE CONCAT( TIME_FORMAT(T.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2) ) END AS tiempo FROM Amigo JOIN Usuario ON Amigo.ID_Amigo = Usuario.ID_Usuario JOIN Tiempo T ON Usuario.ID_Usuario = T.ID_Usuario WHERE Amigo.ID_Usuario = ? AND T.ID_Tiempo = ( SELECT MAX(T2.ID_Tiempo) FROM Tiempo T2 WHERE T2.ID_Usuario = Usuario.ID_Usuario );";
         $c = new Conexion();
         $c->conectar();
         $datos = $c->ejecutarCosulta($sql, [$_SESSION["id_usuario"]]);
 
         foreach($datos as $item){
+
+            if($item['tiempo'] == NULL ){$item['tiempo'] = 0;}
     
-            echo "<div class=\"rank-row\"><span class=\"rank-num\"></span><span class=\"rname\"> " . $item["nom"] . " " . $item["ape"] . "</span><span class=\"rtime\">0.0</span></div>";
+            echo "<div class=\"rank-row\"><span class=\"rank-num\"></span><span class=\"rname\"> " . $item["nom"] . " " . $item["ape"] . "</span><span class=\"rtime\">". $item['tiempo'] ."</span></div>";
             
         }
 

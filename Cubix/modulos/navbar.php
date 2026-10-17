@@ -19,7 +19,6 @@
     <div class="mini-avatar"><?php echo $_SESSION["nombre"][0] . $_SESSION["apellido"][0] ?></div>
     <div>
       <div class="name"><?php echo $_SESSION["nombre"] . " " .$_SESSION["apellido"] ?>
-      <a href="logout.php" class="btn btn-outline btn-small" style="margin-left: 5px;">Salir</a>
       </div>
     </div>
   </div>

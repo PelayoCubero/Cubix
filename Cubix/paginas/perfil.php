@@ -20,7 +20,7 @@
 
   if($tiempo == NULL){$tiempo = 0.0;}
   if($wca == NULL){$wca = " ";}
-  else {$wca = "WCA ID " . $wca;}
+  else {$wca = "WCA ID <a href = \"https://www.worldcubeassociation.org/persons/" . $wca . "\" target=\"_blank\">" . $wca . "</a>";}
 
 
 ?>
@@ -36,6 +36,8 @@
         <div class="pname"><?php echo $_SESSION["nombre"] . " " .$_SESSION["apellido"] ?></div>
         <div class="phandle"><?php echo $wca ?></div>
         <span class="badge-inline"><?php echo $tiempo ?> record</span>
+      <a href="logout.php" class="btn btn-outline btn-small">Cerrar sesión</a>
+
       </div>
     </div>
 
@@ -69,6 +71,8 @@
         <div class="ctag">Colección</div>
       </div>
     </div>
+
+    
 
     <h2>Historial tiempos</h2>
     <div class="card">
