@@ -32,10 +32,14 @@
         <div class="timer-actions">
           <button class="btn btn-primary" id="startBtn" onclick="toggleTimer()">Iniciar</button>
           <button class="btn btn-outline" onclick="newScramble()">Nueva mezcla</button>
+          
+          <button class="btn btn-outline" id="2">+2</button>
+          <button class="btn btn-outline" id="DNF">DNF</button>
+
         </div>
-
-        <br><div class="pb-tag">tu record es <b><?php echo $tiempo ?></b> rompelo</div>
-
+          <br>
+          <h2>ultima sesión</h2>
+          <ul class="solve-list" id="solvesList"></ul>
       </div>
 
       <div>
@@ -48,10 +52,11 @@
           </div>
         </div>
 
-        <div class="card">
-          <h2>ultima sesión</h2>
-          <ul class="solve-list" id="solvesList">
-          </ul>
+        <div class="card" style =" display: flex; justify-content : center;">
+
+          <div class="pb-tag" style= "font-size:30px;"><b><?php echo $tiempo ?></b> record</div>
+
+          
         </div>
       </div>
     </div>

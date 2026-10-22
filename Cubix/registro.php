@@ -119,5 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <div class="alt-link">¿Ya tienes cuenta? <a href="index.php">Inicia sesión</a></div>
 </form>
 
+<script src="javaScript/script.js"></script>
+
 </body>
 </html>

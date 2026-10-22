@@ -5,12 +5,129 @@ USE Cubix;
 -- ============================================
 
 INSERT INTO Cubo (Marca, Modelo, enlace_compra) VALUES
-('GAN', 'GAN 12 Maglev', 'https://www.gancube.com/gan12'),
-('MoYu', 'RS3M 2021', 'https://www.moyustore.com/rs3m-2021'),
-('QiYi', 'MS 3x3', 'https://www.qiyitoys.com/ms-3x3'),
-('YJ', 'MGC Elite', 'https://www.yjtoys.com/mgc-elite'),
-('GAN', 'GAN 13 Maglev', 'https://www.gancube.com/gan13'),
-('MoYu', 'Super RS3M V2', 'https://www.moyustore.com/super-rs3m-v2');
+-- ============================================
+-- GAN
+-- ============================================
+
+('GAN', 'GAN 11 M Pro', 'https://www.gancube.com'),
+('GAN', 'GAN 12 UI MagLev', 'https://www.gancube.com'),
+('GAN', 'GAN 13 MagLev', 'https://www.gancube.com'),
+('GAN', 'GAN 14 MagLev', 'https://www.gancube.com'),
+('GAN', 'GAN 14 Pro', 'https://www.gancube.com'),
+('GAN', 'GAN 15 MagLev', 'https://www.gancube.com'),
+('GAN', 'GAN 16 MagLev', 'https://www.gancube.com'),
+('GAN', 'GAN 16 MagLev MAX', 'https://www.gancube.com'),
+('GAN', 'GAN 17 MagDrive', 'https://www.gancube.com'),
+('GAN', 'GAN V100', 'https://www.gancube.com'),
+('GAN', 'GAN 356 M', 'https://www.gancube.com'),
+('GAN', 'GAN 356 MagLev', 'https://www.gancube.com'),
+('GAN', 'GAN 356 RS', 'https://www.gancube.com'),
+
+-- ============================================
+-- MOYU
+-- ============================================
+
+('MoYu', 'RS3M 2020', 'https://www.moyustore.com'),
+('MoYu', 'RS3M 2021 MagLev', 'https://www.moyustore.com'),
+('MoYu', 'RS3M 2022', 'https://www.moyustore.com'),
+('MoYu', 'RS3M V5', 'https://www.moyustore.com'),
+('MoYu', 'RS3M V5 Ball Core', 'https://www.moyustore.com'),
+('MoYu', 'RS3M Super', 'https://www.moyustore.com'),
+('MoYu', 'RS3M Super V2', 'https://www.moyustore.com'),
+('MoYu', 'WeiLong WR M 2020', 'https://www.moyustore.com'),
+('MoYu', 'WeiLong WR M 2021', 'https://www.moyustore.com'),
+('MoYu', 'WeiLong WR M V9', 'https://www.moyustore.com'),
+('MoYu', 'WeiLong WR M V10', 'https://www.moyustore.com'),
+('MoYu', 'WeiLong WR M V10 Ball Core', 'https://www.moyustore.com'),
+('MoYu', 'WeiLong WR M V11', 'https://www.moyustore.com'),
+('MoYu', 'WeiLong WR M V11 SE', 'https://www.moyustore.com'),
+('MoYu', 'Super WeiLong', 'https://www.moyustore.com'),
+('MoYu', 'Super WeiLong V2', 'https://www.moyustore.com'),
+('MoYu', 'HuaMeng YS3M', 'https://www.moyustore.com'),
+('MoYu', 'AoLong V5', 'https://www.moyustore.com'),
+
+-- ============================================
+-- QIYI / X-MAN
+-- ============================================
+
+('QiYi', 'MS 3x3', 'https://www.qiyitoys.com'),
+('QiYi', 'Warrior M', 'https://www.qiyitoys.com'),
+('QiYi', 'Warrior S', 'https://www.qiyitoys.com'),
+('QiYi', 'M Pro 3x3', 'https://www.qiyitoys.com'),
+('QiYi', 'M Pro V2', 'https://www.qiyitoys.com'),
+('QiYi', 'X-Man Tornado V2', 'https://www.qiyitoys.com'),
+('QiYi', 'X-Man Tornado V3', 'https://www.qiyitoys.com'),
+('QiYi', 'X-Man Tornado V3 Pioneer', 'https://www.qiyitoys.com'),
+('QiYi', 'X-Man Tornado V4', 'https://www.qiyitoys.com'),
+('QiYi', 'X-Man Tornado V4 Pioneer', 'https://www.qiyitoys.com'),
+('QiYi', 'X-Man Tornado V5', 'https://www.qiyitoys.com'),
+('QiYi', 'X-Man Tornado V5 Pioneer', 'https://www.qiyitoys.com'),
+
+-- ============================================
+-- YJ
+-- ============================================
+
+('YJ', 'MGC 3x3', 'https://www.yjtoys.com'),
+('YJ', 'MGC Elite', 'https://www.yjtoys.com'),
+('YJ', 'MGC Beta', 'https://www.yjtoys.com'),
+('YJ', 'MGC Beta MagLev', 'https://www.yjtoys.com'),
+('YJ', 'MGC EVO II', 'https://www.yjtoys.com'),
+('YJ', 'YuLong V2 M', 'https://www.yjtoys.com'),
+('YJ', 'YuLong V3 M', 'https://www.yjtoys.com'),
+('YJ', 'YuLong V3M UV', 'https://www.yjtoys.com'),
+
+-- ============================================
+-- DAYAN
+-- ============================================
+
+('DaYan', 'TengYun V2 M', 'https://www.dayan-cube.com'),
+('DaYan', 'TengYun V3 M', 'https://www.dayan-cube.com'),
+('DaYan', 'GuHong V3 M', 'https://www.dayan-cube.com'),
+('DaYan', 'GuHong Pro M', 'https://www.dayan-cube.com'),
+('DaYan', 'GuHong Pro+', 'https://www.dayan-cube.com'),
+('DaYan', 'ZhanChi V5 M', 'https://www.dayan-cube.com'),
+('DaYan', 'ZhanChi V5 Premium', 'https://www.dayan-cube.com'),
+
+-- ============================================
+-- YUXIN
+-- ============================================
+
+('YuXin', 'Little Magic 3x3 M', 'https://www.yuxinmall.com'),
+('YuXin', 'Kylin V2 M', 'https://www.yuxinmall.com'),
+('YuXin', 'HuangLong 3x3', 'https://www.yuxinmall.com'),
+('YuXin', 'Little Magic V2 M', 'https://www.yuxinmall.com'),
+('YuXin', 'HuangLong V2', 'https://www.yuxinmall.com'),
+('YuXin', 'Little Magic V3 M', 'https://www.yuxinmall.com'),
+
+-- ============================================
+-- SHENGSHOU
+-- ============================================
+
+('ShengShou', 'Mr. M 3x3', 'https://www.shengshoucube.com'),
+('ShengShou', 'Legend 3x3 M', 'https://www.shengshoucube.com'),
+('ShengShou', 'Wind 3x3 M', 'https://www.shengshoucube.com'),
+('ShengShou', 'Pioneer 3x3', 'https://www.shengshoucube.com'),
+('ShengShou', 'MeiYu 3x3 M', 'https://www.shengshoucube.com'),
+
+-- ============================================
+-- MFJS / MEILONG
+-- ============================================
+
+('MFJS', 'MeiLong 3x3 M', 'https://www.moyustore.com'),
+('MFJS', 'MeiLong 3x3 V2', 'https://www.moyustore.com'),
+('MFJS', 'MeiLong 3C 3x3', 'https://www.moyustore.com'),
+('MFJS', 'MeiLong V2 M UV', 'https://www.moyustore.com'),
+
+-- ============================================
+-- RUBIK'S
+-- ============================================
+
+('Rubik''s', 'Speed 3x3', 'https://www.rubiks.com'),
+('Rubik''s', 'Speed Cube', 'https://www.rubiks.com'),
+('Rubik''s', 'Connected', 'https://www.rubiks.com'),
+('Rubik''s', 'Connected X', 'https://www.rubiks.com'),
+('Rubik''s', 'Coach Cube', 'https://www.rubiks.com'),
+('Rubik''s', 'Next Gen', 'https://www.rubiks.com');
 
 
 -- ============================================
@@ -64,6 +181,7 @@ INSERT INTO Usuario
 ('Daniel', 'Fernandez', 'daniel.fernandez@gmail.com', 'daniel123', '2017FERN05'),
 ('Ana', 'Rodriguez', 'ana.rodriguez@gmail.com', 'ana123', '2022RODR06'),
 ('Pablo', 'Gomez', 'pablo.gomez@gmail.com', 'pablo123', '2023GOME07'),
+('Top 0', 'Del universo', 'rubenrodcerr@gmail.com', '123456', NULL),
 ('Laura', 'Diaz', 'laura.diaz@gmail.com', 'laura123', NULL);
 
 
@@ -223,3 +341,4 @@ INSERT INTO Amigo (ID_Usuario, ID_Amigo) VALUES
 (7, 5),
 (7, 8),
 (8, 6);
+

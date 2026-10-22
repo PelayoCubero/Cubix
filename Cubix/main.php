@@ -24,8 +24,8 @@
   include ("paginas/dashboard.php");
   include ("paginas/timer.php");
   include ("paginas/algoritmos.php");
-  include ("paginas/perfil.php");
   include ("paginas/estadisticas.php");
+  include ("paginas/perfil.php");
   
   ?>
 

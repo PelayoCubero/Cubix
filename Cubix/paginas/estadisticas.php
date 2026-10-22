@@ -9,7 +9,6 @@
     <div class="card">
       <table>
         <thead><tr><th>WCA</th><th>Amigo</th><th>Mezcla</th><th>Mejor tiempo</th><th>Cubo</th></tr></thead>
-        <tbody>
 
         <?php
         
@@ -34,7 +33,6 @@
 
         ?>
          
-        </tbody>
       </table>
 
       
@@ -59,7 +57,7 @@
             foreach($datos as $item){
 
 
-            echo "<tr><td>" .$item["mezcla"]. "</td><td class=\"mono\"> ".$item["tiempo"]. " </td><td>" .$item["marca"]." ".$item["modelo"]. "</td></tr>";
+              echo "<tr><td>" .$item["mezcla"]. "</td><td class=\"mono\"> ".$item["tiempo"]. "</td><td>" .$item["fecha"]. "</td><td>" .$item["marca"]. " " .$item["modelo"]. "</td></tr>";
                 
             }
 

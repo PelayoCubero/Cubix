@@ -59,7 +59,6 @@
           <div style="background:var(--blue-face)"></div><div style="background:#efe9dc"></div><div style="background:var(--green-face)"></div>
         </div>
         <div class="cname">MoYu WeiLong WRM</div>
-        <div class="ctag">Colección</div>
       </div>
       <div class="cube-item">
         <div class="cube-swatch" style="background:#101114;">
@@ -68,7 +67,6 @@
           <div style="background:var(--white-face)"></div><div style="background:#101114"></div><div style="background:var(--blue-face)"></div>
         </div>
         <div class="cname">QiYi X-Man Tornado v3</div>
-        <div class="ctag">Colección</div>
       </div>
     </div>
 
@@ -98,6 +96,7 @@
 
             $c->desconectar();
 
+            // UPDATE `usuario` SET `Contraseña` = '123456' WHERE `usuario`.`ID_Usuario` = 10;
 
           ?>
 
