@@ -14,7 +14,6 @@
     <button class="navbtn" data-view="estadisticas"><span class="navdot" style="background:var(--red-face)"></span>Estadisticas</button>
     <button class="navbtn" data-view="perfil"><span class="navdot" style="background:var(--blue-face)"></span>Perfil</button>
   </nav>
-
   <div class="sidebar-footer">
     <div class="mini-avatar"><?php echo $_SESSION["nombre"][0] . $_SESSION["apellido"][0] ?></div>
     <div>

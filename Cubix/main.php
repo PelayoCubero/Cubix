@@ -6,33 +6,33 @@
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
+  <head>
 
-<?php include ("modulos/head.php");?>
-<?php include ("./Conexion/Conexion.php");?>
+    <?php include ("modulos/head.php");?>
+    <?php include ("./Conexion/Conexion.php");?>
 
 
-</head>
-<body>
+  </head>
+  <body>
 
-<?php include ("modulos/navbar.php");?>
+    <?php include ("modulos/navbar.php");?>
 
-<main>
+    <main>
 
-  <?php 
-  
-  include ("paginas/dashboard.php");
-  include ("paginas/timer.php");
-  include ("paginas/algoritmos.php");
-  include ("paginas/estadisticas.php");
-  include ("paginas/perfil.php");
-  
-  ?>
+      <?php 
+      
+        include ("paginas/dashboard.php");
+        include ("paginas/timer.php");
+        include ("paginas/algoritmos.php");
+        include ("paginas/estadisticas.php");
+        include ("paginas/perfil.php");
+      
+      ?>
 
- 
-</main>
+    
+    </main>
 
-<script src="javaScript/script.js"></script>
+    <script src="javaScript/script.js"></script>
 
-</body>
+  </body>
 </html>

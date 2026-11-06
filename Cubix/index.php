@@ -38,44 +38,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<?php include("modulos/head.php"); ?>
-<style>
-  body{ align-items:center; justify-content:center; padding:24px; }
+  <head>
+    <?php include("modulos/head.php"); ?>
+    <style>
+      body{ align-items:center; justify-content:center; padding:24px; }
 
-</style>
-</head>
-<body>
+    </style>
+  </head>
+  <body>
 
-<form class="login-card" method="POST" action="index.php" autocomplete="on">
-  <div class="login-logo">
-    <img src="modulos/logo.png" alt="Cubix">
-    <div class="brand-name">Cubix</div>
-    <div class="login-sub">Inicia sesión para seguir mejorando tus tiempos</div>
-  </div>
+  <form class="login-card" method="POST" action="index.php" autocomplete="on">
+    <div class="login-logo">
+      <img src="imagenes/logo.png" alt="Cubix">
+      <div class="brand-name">Cubix</div>
+      <div class="login-sub">Inicia sesión para seguir mejorando tus tiempos</div>
+    </div>
 
-  <?php if ($error !== ''): ?>
-    <div class="login-error"><?= htmlspecialchars($error) ?></div>
-  <?php endif; ?>
+    <?php if ($error !== ''): ?>
+      <div class="login-error"><?= htmlspecialchars($error) ?></div>
+    <?php endif; ?>
 
-  <div class="field">
-    <label for="correo">Correo</label>
-    <input type="email" id="correo" name="correo" value="<?= htmlspecialchars($correo) ?>" required autofocus>
-  </div>
+    <div class="field">
+      <label for="correo">Correo</label>
+      <input type="email" id="correo" name="correo" value="<?= htmlspecialchars($correo) ?>" required autofocus>
+    </div>
 
-  <div class="field">
-    <label for="password">Contraseña</label>
-    <input type="password" id="password" name="password" required>
-  </div>
+    <div class="field">
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" name="password" required>
+    </div>
 
-  <button type="submit" class="btn btn-primary">Entrar</button>
+    <button type="submit" class="btn btn-primary">Entrar</button>
 
-  <div style="text-align:center; font-size:13px; color:var(--text-dim); margin-top:18px;">
-    ¿No tienes cuenta? <a href="registro.php" style="color:var(--yellow-face); font-weight:600;">Regístrate</a>
-  </div>
-</form>
+    <div style="text-align:center; font-size:13px; color:var(--text-dim); margin-top:18px;">
+      ¿No tienes cuenta? <a href="registro.php" style="color:var(--yellow-face); font-weight:600;">Regístrate</a>
+    </div>
+  </form>
 
-<script src="javaScript/script.js"></script>
+  <script src="javaScript/script.js"></script>
 
-</body>
+  </body>
 </html>

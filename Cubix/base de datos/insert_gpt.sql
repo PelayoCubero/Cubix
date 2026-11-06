@@ -27,24 +27,24 @@ INSERT INTO Cubo (Marca, Modelo, enlace_compra) VALUES
 -- MOYU
 -- ============================================
 
-('MoYu', 'RS3M 2020', 'https://www.moyustore.com'),
-('MoYu', 'RS3M 2021 MagLev', 'https://www.moyustore.com'),
-('MoYu', 'RS3M 2022', 'https://www.moyustore.com'),
-('MoYu', 'RS3M V5', 'https://www.moyustore.com'),
-('MoYu', 'RS3M V5 Ball Core', 'https://www.moyustore.com'),
-('MoYu', 'RS3M Super', 'https://www.moyustore.com'),
-('MoYu', 'RS3M Super V2', 'https://www.moyustore.com'),
-('MoYu', 'WeiLong WR M 2020', 'https://www.moyustore.com'),
-('MoYu', 'WeiLong WR M 2021', 'https://www.moyustore.com'),
-('MoYu', 'WeiLong WR M V9', 'https://www.moyustore.com'),
-('MoYu', 'WeiLong WR M V10', 'https://www.moyustore.com'),
-('MoYu', 'WeiLong WR M V10 Ball Core', 'https://www.moyustore.com'),
-('MoYu', 'WeiLong WR M V11', 'https://www.moyustore.com'),
-('MoYu', 'WeiLong WR M V11 SE', 'https://www.moyustore.com'),
-('MoYu', 'Super WeiLong', 'https://www.moyustore.com'),
-('MoYu', 'Super WeiLong V2', 'https://www.moyustore.com'),
-('MoYu', 'HuaMeng YS3M', 'https://www.moyustore.com'),
-('MoYu', 'AoLong V5', 'https://www.moyustore.com'),
+('MoYu', 'RS3M 2020', 'https://www.moyucube.com'),
+('MoYu', 'RS3M 2021 MagLev', 'https://www.moyucube.com'),
+('MoYu', 'RS3M 2022', 'https://www.moyucube.com'),
+('MoYu', 'RS3M V5', 'https://www.moyucube.com'),
+('MoYu', 'RS3M V5 Ball Core', 'https://www.moyucube.com'),
+('MoYu', 'RS3M Super', 'https://www.moyucube.com'),
+('MoYu', 'RS3M Super V2', 'https://www.moyucube.com'),
+('MoYu', 'WeiLong WR M 2020', 'https://www.moyucube.com'),
+('MoYu', 'WeiLong WR M 2021', 'https://www.moyucube.com'),
+('MoYu', 'WeiLong WR M V9', 'https://www.moyucube.com'),
+('MoYu', 'WeiLong WR M V10', 'https://www.moyucube.com'),
+('MoYu', 'WeiLong WR M V10 Ball Core', 'https://www.moyucube.com'),
+('MoYu', 'WeiLong WR M V11', 'https://www.moyucube.com'),
+('MoYu', 'WeiLong WR M V11 SE', 'https://www.moyucube.com'),
+('MoYu', 'Super WeiLong', 'https://www.moyucube.com'),
+('MoYu', 'Super WeiLong V2', 'https://www.moyucube.com'),
+('MoYu', 'HuaMeng YS3M', 'https://www.moyucube.com'),
+('MoYu', 'AoLong V5', 'https://www.moyucube.com'),
 
 -- ============================================
 -- QIYI / X-MAN
@@ -64,42 +64,6 @@ INSERT INTO Cubo (Marca, Modelo, enlace_compra) VALUES
 ('QiYi', 'X-Man Tornado V5 Pioneer', 'https://www.qiyitoys.com'),
 
 -- ============================================
--- YJ
--- ============================================
-
-('YJ', 'MGC 3x3', 'https://www.yjtoys.com'),
-('YJ', 'MGC Elite', 'https://www.yjtoys.com'),
-('YJ', 'MGC Beta', 'https://www.yjtoys.com'),
-('YJ', 'MGC Beta MagLev', 'https://www.yjtoys.com'),
-('YJ', 'MGC EVO II', 'https://www.yjtoys.com'),
-('YJ', 'YuLong V2 M', 'https://www.yjtoys.com'),
-('YJ', 'YuLong V3 M', 'https://www.yjtoys.com'),
-('YJ', 'YuLong V3M UV', 'https://www.yjtoys.com'),
-
--- ============================================
--- DAYAN
--- ============================================
-
-('DaYan', 'TengYun V2 M', 'https://www.dayan-cube.com'),
-('DaYan', 'TengYun V3 M', 'https://www.dayan-cube.com'),
-('DaYan', 'GuHong V3 M', 'https://www.dayan-cube.com'),
-('DaYan', 'GuHong Pro M', 'https://www.dayan-cube.com'),
-('DaYan', 'GuHong Pro+', 'https://www.dayan-cube.com'),
-('DaYan', 'ZhanChi V5 M', 'https://www.dayan-cube.com'),
-('DaYan', 'ZhanChi V5 Premium', 'https://www.dayan-cube.com'),
-
--- ============================================
--- YUXIN
--- ============================================
-
-('YuXin', 'Little Magic 3x3 M', 'https://www.yuxinmall.com'),
-('YuXin', 'Kylin V2 M', 'https://www.yuxinmall.com'),
-('YuXin', 'HuangLong 3x3', 'https://www.yuxinmall.com'),
-('YuXin', 'Little Magic V2 M', 'https://www.yuxinmall.com'),
-('YuXin', 'HuangLong V2', 'https://www.yuxinmall.com'),
-('YuXin', 'Little Magic V3 M', 'https://www.yuxinmall.com'),
-
--- ============================================
 -- SHENGSHOU
 -- ============================================
 
@@ -113,10 +77,10 @@ INSERT INTO Cubo (Marca, Modelo, enlace_compra) VALUES
 -- MFJS / MEILONG
 -- ============================================
 
-('MFJS', 'MeiLong 3x3 M', 'https://www.moyustore.com'),
-('MFJS', 'MeiLong 3x3 V2', 'https://www.moyustore.com'),
-('MFJS', 'MeiLong 3C 3x3', 'https://www.moyustore.com'),
-('MFJS', 'MeiLong V2 M UV', 'https://www.moyustore.com'),
+('MFJS', 'MeiLong 3x3 M', 'https://www.moyucube.com'),
+('MFJS', 'MeiLong 3x3 V2', 'https://www.moyucube.com'),
+('MFJS', 'MeiLong 3C 3x3', 'https://www.moyucube.com'),
+('MFJS', 'MeiLong V2 M UV', 'https://www.moyucube.com'),
 
 -- ============================================
 -- RUBIK'S

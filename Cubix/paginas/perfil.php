@@ -41,36 +41,92 @@
       </div>
     </div>
 
-    <h2>Vitrina de cubos</h2>
-    <div class="cube-shelf">
-      <div class="cube-item">
-        <div class="cube-swatch" style="background:#101114;">
-          <div style="background:var(--red-face)"></div><div style="background:#101114"></div><div style="background:var(--blue-face)"></div>
-          <div style="background:#101114"></div><div style="background:var(--white-face)"></div><div style="background:#101114"></div>
-          <div style="background:var(--green-face)"></div><div style="background:#101114"></div><div style="background:var(--yellow-face)"></div>
-        </div>
-        <div class="cname">GAN 14 M Pro</div>
-        <div class="ctag main">Principal</div>
-      </div>
-      <div class="cube-item">
-        <div class="cube-swatch" style="background:#efe9dc;">
-          <div style="background:var(--orange-face)"></div><div style="background:#efe9dc"></div><div style="background:var(--white-face)"></div>
-          <div style="background:#efe9dc"></div><div style="background:var(--yellow-face)"></div><div style="background:#efe9dc"></div>
-          <div style="background:var(--blue-face)"></div><div style="background:#efe9dc"></div><div style="background:var(--green-face)"></div>
-        </div>
-        <div class="cname">MoYu WeiLong WRM</div>
-      </div>
-      <div class="cube-item">
-        <div class="cube-swatch" style="background:#101114;">
-          <div style="background:var(--green-face)"></div><div style="background:#101114"></div><div style="background:var(--red-face)"></div>
-          <div style="background:#101114"></div><div style="background:var(--orange-face)"></div><div style="background:#101114"></div>
-          <div style="background:var(--white-face)"></div><div style="background:#101114"></div><div style="background:var(--blue-face)"></div>
-        </div>
-        <div class="cname">QiYi X-Man Tornado v3</div>
-      </div>
-    </div>
+<?php
+  $c = new Conexion();
+  $c->conectar();
 
-    
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["anadir_cubo"])) {
+      $idCubo = (int)$_POST["anadir_cubo"];
+      $existe = $c->ejecutarCosulta("SELECT 1 FROM Cubo WHERE ID_Cubo = ?", [$idCubo]);
+      if ($existe) {
+          $c->ejecutarCosulta("INSERT IGNORE INTO Usuario_Cubo (ID_Usuario, ID_Cubo) VALUES (?, ?)",[$_SESSION["id_usuario"], $idCubo]);
+      }
+  }
+
+  // Cubos del catálogo que el usuario aún no tiene
+  $catalogo = $c->ejecutarCosulta(
+      "SELECT ID_Cubo, Marca, Modelo FROM Cubo
+       WHERE ID_Cubo NOT IN (SELECT ID_Cubo FROM Usuario_Cubo WHERE ID_Usuario = ?)
+       ORDER BY Marca, Modelo",
+      [$_SESSION["id_usuario"]]
+  );
+?>
+
+<h2>Vitrina de cubos</h2>
+
+<form method="POST" style="display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 20px;">
+
+  <select id="filtroMarca" required style="background:var(--bg-elev-2); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:10px;">
+    <option value="">Marca…</option>
+    <?php foreach (array_unique(array_column($catalogo, "Marca")) as $m): ?>
+      <option value="<?= htmlspecialchars($m) ?>"><?= htmlspecialchars($m) ?></option>
+    <?php endforeach; ?>
+  </select>
+
+  <select id="filtroModelo" name="anadir_cubo" required disabled style="background:var(--bg-elev-2); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:10px;">
+    <option value="">Modelo…</option>
+    <?php foreach ($catalogo as $cubo): ?>
+      <option value="<?= $cubo["ID_Cubo"] ?>" data-marca="<?= htmlspecialchars($cubo["Marca"]) ?>"><?= htmlspecialchars($cubo["Modelo"]) ?></option>
+    <?php endforeach; ?>
+  </select>
+
+  <button type="submit" class="btn btn-primary">Añadir cubo</button>
+</form>
+
+<script>
+(function () {
+  var marca  = document.getElementById('filtroMarca');
+  var modelo = document.getElementById('filtroModelo');
+  var todos  = Array.from(modelo.querySelectorAll('option[data-marca]'));
+
+  marca.addEventListener('change', function () {
+    modelo.innerHTML = '<option value="">Modelo…</option>';
+    todos.filter(function (o) { return o.dataset.marca === marca.value; })
+         .forEach(function (o) { modelo.appendChild(o); });
+    modelo.disabled = (marca.value === '');
+  });
+})();
+
+</script>
+
+<div class="cube-shelf">
+  <?php
+    $datos = $c->ejecutarCosulta(
+        "SELECT C.Marca AS marca, C.Modelo AS modelo
+         FROM Usuario_Cubo UC JOIN Cubo C ON C.ID_Cubo = UC.ID_Cubo
+         WHERE UC.ID_Usuario = ?",
+        [$_SESSION["id_usuario"]]
+    );
+    $c->desconectar();
+
+    foreach ($datos as $item) {
+        $marca = strtolower($item["marca"]);
+        echo "<div class=\"cube-item\">
+                <div class=\"cube-logo\"><img src=\"./imagenes/$marca.png\"></div>
+                <div class=\"cname\">" . $item["marca"]." ".$item["modelo"] . "</div>
+              </div>";
+    }
+  ?>
+  <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["anadir_cubo"])): ?>
+  <script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+    window.addEventListener('load', () => showView('perfil'));
+  </script>
+<?php endif; ?>
+</div>
+   
 
     <h2>Historial tiempos</h2>
     <div class="card">
@@ -96,7 +152,6 @@
 
             $c->desconectar();
 
-            // UPDATE `usuario` SET `Contraseña` = '123456' WHERE `usuario`.`ID_Usuario` = 10;
 
           ?>
 

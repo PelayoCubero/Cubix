@@ -222,13 +222,16 @@
   .profile-head .phandle{ color:var(--text-faint); font-size:13.5px; margin-top:2px; }
   .badge-inline{ display:inline-block; background:var(--bg-elev-2); border:1px solid var(--border); font-size:11.5px; padding:3px 9px; border-radius:20px; margin-top:8px; color:var(--green-face); font-family:var(--font-mono); }
 
-  .cube-shelf{ display:flex; gap:14px; overflow-x:auto; padding-bottom:6px; margin-bottom:30px; }
+  .cube-shelf{ display:grid; grid-template-columns:repeat(auto-fill, 130px); gap:20px 14px; margin-bottom:30px; }
   .cube-item{ flex-shrink:0; width:130px;}
   .cube-swatch{ width:130px; height:90px; border-radius:8px; display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(3,1fr); gap:2px; padding:6px; margin-bottom:8px; }
   .cube-swatch div{ border-radius:2px; }
-  .cube-item .cname{ font-size:13px; font-weight:600; }
+  .cube-item .cname{ font-size:13px; font-weight:600; padding-left: 10px;}
   .cube-item .ctag{ font-size:11px; color:var(--text-faint); }
   .ctag.main{ color:var(--orange-face); }
+
+  .cube-logo{ width:130px; height:90px; border-radius:8px; margin-bottom:8px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid var(--border); padding:12px; }
+  .cube-logo img{ width:64px; height:64px; object-fit:contain; }
 
   .badge-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:14px; margin-bottom:30px; }
   .medal{ text-align:center; padding:16px 8px; border-radius:10px; background:var(--bg-elev-2); border:1px solid var(--border); }
@@ -271,7 +274,7 @@
   }
 
 
-
+/* ---------- Login + Registro ---------- */
   .login-card{ width:100%; max-width:380px; background:var(--bg-elev); border:1px solid var(--border); border-radius:14px; padding:34px 30px; }
   .login-logo{ display:flex; flex-direction:column; align-items:center; gap:10px; margin-bottom:26px; }
   .login-logo img{ width:84px; height:84px; object-fit:contain; border-radius:12px; background:#fff; }

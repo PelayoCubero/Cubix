@@ -62,64 +62,64 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<?php include("modulos/head.php"); ?>
-<style>
-  body{ align-items:center; justify-content:center; padding:24px; }
+  <head>
+    <?php include("modulos/head.php"); ?>
+    <style>
+      body{ align-items:center; justify-content:center; padding:24px; }
 
-</style>
-</head>
-<body>
+    </style>
+  </head>
+  <body>
 
-<form class="login-card" method="POST" action="registro.php" autocomplete="on">
-  <div class="login-logo">
-    <img src="modulos/logo.png" alt="Cubix">
-    <div class="brand-name">Cubix</div>
-    <div class="login-sub">Crea tu cuenta y empieza a registrar tus tiempos</div>
-  </div>
+    <form class="login-card" method="POST" action="registro.php" autocomplete="on">
+      <div class="login-logo">
+        <img src="imagenes/logo.png" alt="Cubix">
+        <div class="brand-name">Cubix</div>
+        <div class="login-sub">Crea tu cuenta y empieza a registrar tus tiempos</div>
+      </div>
 
-  <?php if ($error !== ''): ?>
-    <div class="login-error"><?= htmlspecialchars($error) ?></div>
-  <?php endif; ?>
+      <?php if ($error !== ''): ?>
+        <div class="login-error"><?= htmlspecialchars($error) ?></div>
+      <?php endif; ?>
 
-  <div class="row2">
-    <div class="field">
-      <label for="nombre">Nombre</label>
-      <input type="text" id="nombre" name="nombre" maxlength="50" value="<?= htmlspecialchars($nombre) ?>" required autofocus>
-    </div>
-    <div class="field">
-      <label for="apellido">Apellido</label>
-      <input type="text" id="apellido" name="apellido" maxlength="50" value="<?= htmlspecialchars($apellido) ?>" required>
-    </div>
-  </div>
+      <div class="row2">
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" maxlength="50" value="<?= htmlspecialchars($nombre) ?>" required autofocus>
+        </div>
+        <div class="field">
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido" name="apellido" maxlength="50" value="<?= htmlspecialchars($apellido) ?>" required>
+        </div>
+      </div>
 
-  <div class="field">
-    <label for="correo">Correo</label>
-    <input type="email" id="correo" name="correo" maxlength="100" value="<?= htmlspecialchars($correo) ?>" required>
-  </div>
+      <div class="field">
+        <label for="correo">Correo</label>
+        <input type="email" id="correo" name="correo" maxlength="100" value="<?= htmlspecialchars($correo) ?>" required>
+      </div>
 
-  <div class="field">
-    <label for="wca">WCA ID <span class="opt">(opcional)</span></label>
-    <input type="text" id="wca" name="wca" maxlength="10" value="<?= htmlspecialchars($wca) ?>">
-  </div>
+      <div class="field">
+        <label for="wca">WCA ID <span class="opt">(opcional)</span></label>
+        <input type="text" id="wca" name="wca" maxlength="10" value="<?= htmlspecialchars($wca) ?>">
+      </div>
 
-  <div class="row2">
-    <div class="field">
-      <label for="password">Contraseña</label>
-      <input type="password" id="password" name="password" minlength="6" maxlength="50" required>
-    </div>
-    <div class="field">
-      <label for="password2">Repetir</label>
-      <input type="password" id="password2" name="password2" minlength="6" maxlength="50" required>
-    </div>
-  </div>
+      <div class="row2">
+        <div class="field">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" minlength="6" maxlength="50" required>
+        </div>
+        <div class="field">
+          <label for="password2">Repetir</label>
+          <input type="password" id="password2" name="password2" minlength="6" maxlength="50" required>
+        </div>
+      </div>
 
-  <button type="submit" class="btn btn-primary">Crear cuenta</button>
+      <button type="submit" class="btn btn-primary">Crear cuenta</button>
 
-  <div class="alt-link">¿Ya tienes cuenta? <a href="index.php">Inicia sesión</a></div>
-</form>
+      <div class="alt-link">¿Ya tienes cuenta? <a href="index.php">Inicia sesión</a></div>
+    </form>
 
-<script src="javaScript/script.js"></script>
+    <script src="javaScript/script.js"></script>
 
-</body>
+  </body>
 </html>
