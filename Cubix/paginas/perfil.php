@@ -1,10 +1,10 @@
   <?php
 
-  $sql = "SELECT usuario.WCA_ID as wca, CASE WHEN Tiempo.Tiempo >= '00:01:00' THEN CONCAT( TIME_FORMAT(Tiempo.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(Tiempo.Tiempo, '%f'), 2) ) ELSE CONCAT( TIME_FORMAT(Tiempo.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(Tiempo.Tiempo, '%f'), 2) ) END AS tiempo FROM Usuario JOIN Tiempo ON Usuario.ID_Usuario = Tiempo.ID_Usuario JOIN Cubo ON Tiempo.ID_Cubo = Cubo.ID_Cubo WHERE Usuario.ID_Usuario = 1 AND Tiempo.Tiempo = ( SELECT MIN(T2.Tiempo) FROM Tiempo T2 WHERE T2.ID_Usuario = ? );";
+  $sql = "SELECT usuario.WCA_ID as wca, CASE WHEN Tiempo.Tiempo >= '00:01:00' THEN CONCAT( TIME_FORMAT(Tiempo.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(Tiempo.Tiempo, '%f'), 2) ) ELSE CONCAT( TIME_FORMAT(Tiempo.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(Tiempo.Tiempo, '%f'), 2) ) END AS tiempo FROM Usuario JOIN Tiempo ON Usuario.ID_Usuario = Tiempo.ID_Usuario JOIN Cubo ON Tiempo.ID_Cubo = Cubo.ID_Cubo WHERE Usuario.ID_Usuario = ? AND Tiempo.Tiempo = ( SELECT MIN(T2.Tiempo) FROM Tiempo T2 WHERE T2.ID_Usuario = ? );";
   $c = new Conexion();
   $c->conectar();
 
-  $datos = $c->ejecutarCosulta($sql, [$_SESSION["id_usuario"]]);
+  $datos = $c->ejecutarCosulta($sql, [$_SESSION["id_usuario"],$_SESSION["id_usuario"]]);
   $tiempo = NULL;
   $wca = NULL;
  
@@ -35,7 +35,7 @@
       <div>
         <div class="pname"><?php echo $_SESSION["nombre"] . " " .$_SESSION["apellido"] ?></div>
         <div class="phandle"><?php echo $wca ?></div>
-        <span class="badge-inline"><?php echo $tiempo ?> record</span>
+        <span class="badge-inline"><?php echo round($tiempo, 2) ?> record</span>
       <a href="logout.php" class="btn btn-outline btn-small">Cerrar sesión</a>
 
       </div>
@@ -66,7 +66,7 @@
 
 <form method="POST" style="display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 20px;">
 
-  <select id="filtroMarca" required style="background:var(--bg-elev-2); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:10px;">
+  <select id="filtroMarca" required>
     <option value="">Marca…</option>
     <?php foreach (array_unique(array_column($catalogo, "Marca")) as $m): ?>
       <option value="<?= htmlspecialchars($m) ?>"><?= htmlspecialchars($m) ?></option>
@@ -107,15 +107,15 @@
          WHERE UC.ID_Usuario = ?",
         [$_SESSION["id_usuario"]]
     );
-    $c->desconectar();
-
+    
     foreach ($datos as $item) {
-        $marca = strtolower($item["marca"]);
-        echo "<div class=\"cube-item\">
-                <div class=\"cube-logo\"><img src=\"./imagenes/$marca.png\"></div>
-                <div class=\"cname\">" . $item["marca"]." ".$item["modelo"] . "</div>
-              </div>";
-    }
+      $marca = strtolower($item["marca"]);
+      echo "<div class=\"cube-item\">
+      <div class=\"cube-logo\"><img src=\"./imagenes/$marca.png\"></div>
+      <div class=\"cname\">" . $item["marca"]." ".$item["modelo"] . "</div>
+      </div>";
+      }
+    $c->desconectar();
   ?>
   <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["anadir_cubo"])): ?>
   <script>

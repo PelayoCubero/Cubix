@@ -122,7 +122,7 @@
   h1{ font-family:var(--font-display); font-size:28px; font-weight:700; }
   h2{ font-family:var(--font-display); font-size:16px; font-weight:600; margin-bottom:14px; }
 
-  .card{ background:var(--bg-elev); border:1px solid var(--border); border-radius:var(--radius); padding:20px; }
+  .card{ background:var(--bg-elev); border:1px solid var(--border); border-radius:var(--radius); padding:20px; margin-bottom:16px;}
 
   /* ---------- Dashboard ---------- */
   .hero-scramble{
@@ -302,3 +302,5 @@
   .login-card .btn{ width:100%; margin-top:6px; }
   .alt-link{ text-align:center; font-size:13px; color:var(--text-dim); margin-top:18px; }
   .alt-link a{ color:var(--yellow-face); font-weight:600; }
+
+  select {background:var(--bg-elev-2); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:10px;}

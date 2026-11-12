@@ -1,0 +1,98 @@
+<?php
+session_start();
+header('Content-Type: application/json; charset=utf-8');
+
+function responder($ok, $extra = [], $codigo = 200) {
+    http_response_code($codigo);
+    echo json_encode(array_merge(['ok' => $ok], $extra));
+    exit;
+}
+
+if (!isset($_SESSION['id_usuario'])) {
+    responder(false, ['error' => 'Sesión no iniciada'], 403);
+}
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    responder(false, ['error' => 'Método no permitido'], 405);
+}
+
+try {
+
+    include("./Conexion/Conexion.php");
+
+    $idUsuario = (int)$_SESSION['id_usuario'];
+    $accion = $_POST['accion'] ?? '';
+
+    $c = new Conexion();
+    $c->conectar();
+
+    // ---------- Guardar un tiempo nuevo ----------
+    if ($accion === 'guardar') {
+
+        $ms     = (int)($_POST['ms'] ?? 0);
+        $mezcla = trim($_POST['mezcla'] ?? '');
+        $idCubo = (int)($_POST['idcubo'] ?? 0);
+
+        if ($ms <= 0 || $ms > 86400000 || $mezcla === '' || mb_strlen($mezcla) > 100 || $idCubo <= 0) {
+            responder(false, ['error' => 'Datos no válidos'], 400);
+        }
+
+        // El cubo tiene que ser del usuario
+        $propio = $c->ejecutarCosulta(
+            "SELECT 1 FROM Usuario_Cubo WHERE ID_Usuario = ? AND ID_Cubo = ?",
+            [$idUsuario, $idCubo]
+        );
+        if (!$propio) {
+            responder(false, ['error' => 'Ese cubo no está en tu vitrina'], 400);
+        }
+
+        // ms -> 'HH:MM:SS.cc' (columna TIME(2))
+        $cs = (int)round($ms / 10);
+        $tiempo = sprintf('%02d:%02d:%02d.%02d',
+            intdiv($cs, 360000),
+            intdiv($cs % 360000, 6000),
+            intdiv($cs % 6000, 100),
+            $cs % 100
+        );
+
+        $c->ejecutarCosulta(
+            "INSERT INTO Tiempo (Tiempo, Fecha, Mezcla, Mas_2, DNF, ID_Usuario, ID_Cubo)
+             VALUES (?, CURDATE(), ?, 0, 0, ?, ?)",
+            [$tiempo, $mezcla, $idUsuario, $idCubo]
+        );
+
+        $ultimo = $c->ejecutarCosulta(
+            "SELECT ID_Tiempo AS id FROM Tiempo WHERE ID_Usuario = ? ORDER BY ID_Tiempo DESC LIMIT 1",
+            [$idUsuario]
+        );
+        $c->desconectar();
+
+        responder(true, ['id' => (int)$ultimo[0]['id']]);
+    }
+
+    // ---------- +2 / DNF sobre un tiempo ya guardado ----------
+    if ($accion === 'penalizar') {
+
+        $id   = (int)($_POST['id'] ?? 0);
+        $mas2 = !empty($_POST['mas2']) ? 1 : 0;
+        $dnf  = !empty($_POST['dnf']) ? 1 : 0;
+
+        if ($id <= 0) {
+            responder(false, ['error' => 'Datos no válidos'], 400);
+        }
+
+        $c->ejecutarCosulta(
+            "UPDATE Tiempo SET Mas_2 = ?, DNF = ? WHERE ID_Tiempo = ? AND ID_Usuario = ?",
+            [$mas2, $dnf, $id, $idUsuario]
+        );
+        $c->desconectar();
+
+        responder(true);
+    }
+
+    $c->desconectar();
+    responder(false, ['error' => 'Acción desconocida'], 400);
+
+} catch (Throwable $e) {
+    // Devuelve el error real (útil mientras desarrollas; quítalo en producción)
+    responder(false, ['error' => $e->getMessage()], 500);
+}
