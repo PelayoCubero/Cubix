@@ -1,6 +1,7 @@
 <section class="view" id="algos">
     <div class="view-header">
       <h1>Algoritmos</h1>
+      <h4 style = "color:gray;">imagenes orginales de <a href="https://myrubik.com/">myrubik.com</a></h4>
     </div>
     
     <div id="cfopPanel">
@@ -12,93 +13,36 @@
 
       <div class="algo-grid" id="algoGrid">
 
-        <div class="algo-card show" data-stage="f2l">
-          <div class="top">
-            <div class="net" id="net-f2l-1"></div>
-            <div><div class="algo-name">Inserción básica</div><div class="algo-stage">F2L · par ya emparejado</div></div>
-          </div>
-          <div class="algo-notation">U R U' R'</div>
-        </div>
-                
-        <div class="algo-card show" data-stage="f2l">
-          <div class="top">
-            <div class="net" id="net-f2l-1"></div>
-            <div><div class="algo-name">Inserción básica</div><div class="algo-stage">F2L · par ya emparejado</div></div>
-          </div>
-          <div class="algo-notation">U R U' R'</div>
-        </div>
-                
-        <div class="algo-card show" data-stage="f2l">
-          <div class="top">
-            <div class="net" id="net-f2l-1"></div>
-            <div><div class="algo-name">Inserción básica</div><div class="algo-stage">F2L · par ya emparejado</div></div>
-          </div>
-          <div class="algo-notation">U R U' R'</div>
-        </div>
+          <?php
 
-        <div class="algo-card show" data-stage="f2l">
-          <div class="top">
-            <div class="net" id="net-f2l-1"></div>
-            <div><div class="algo-name">Inserción básica</div><div class="algo-stage">F2L · par ya emparejado</div></div>
-          </div>
-          <div class="algo-notation">U R U' R'</div>
-        </div>
+            $sql = "SELECT algoritmo.Paso as paso, algoritmo.nombre as nom, algoritmo.imagen as img, mezcla.Combinacion as scb FROM `algoritmo` inner join mezcla on algoritmo.ID_Algoritmo = mezcla.ID_Algoritmo";
+            $c = new Conexion();
+            $c->conectar();
 
-        <div class="algo-card show" data-stage="f2l">
-          <div class="top">
-            <div class="net" id="net-f2l-2"></div>
-            <div><div class="algo-name">Caso 3 · esquina abajo</div><div class="algo-stage">F2L</div></div>
-          </div>
-          <div class="algo-notation">U' R U R' U R U' R'</div>
-        </div>
+            $datos = $c->ejecutarCosulta($sql);
+          
+          foreach ($datos as $item) {
+            $stage = strtolower($item["paso"]);
+            $show  = ($stage === "f2l") ? " show" : "";
 
-        <div class="algo-card" data-stage="oll">
-          <div class="top">
-            <div class="net" id="net-oll-1"></div>
-            <div><div class="algo-name">Sune</div><div class="algo-stage">OLL · último layer</div></div>
-          </div>
-          <div class="algo-notation">R U R' U R U2 R'</div>
-        </div>
+            echo "<div class=\"algo-card$show\" data-stage=\"" . htmlspecialchars($stage) . "\">
+            <div class=\"top\">
+                  <div>
+                    <div class=\"algo-name\">" . htmlspecialchars($item["nom"]) . "</div>
+                    <div class=\"algo-stage\">" . htmlspecialchars($item["paso"]) . "</div>
+                  </div>
+                      <img class=\"algo-img\" src=\"https://myrubik.com/" . htmlspecialchars($item["img"] ?? "") . "\">
+                    </div>
+                    <div class=\"algo-notation\">" . htmlspecialchars($item["scb"]) . "</div>
+                  </div>";
+  }
 
-        <div class="algo-card" data-stage="oll">
-          <div class="top">
-            <div class="net" id="net-oll-2"></div>
-            <div><div class="algo-name">Antisune</div><div class="algo-stage">OLL</div></div>
-          </div>
-          <div class="algo-notation">R U2 R' U' R U' R'</div>
-        </div>
+            $c->desconectar();
 
-        <div class="algo-card" data-stage="oll">
-          <div class="top">
-            <div class="net" id="net-oll-3"></div>
-            <div><div class="algo-name">Cruz (OLL 21)</div><div class="algo-stage">OLL</div></div>
-          </div>
-          <div class="algo-notation">R U2 R2 U' R2 U' R2 U2 R</div>
-        </div>
 
-        <div class="algo-card" data-stage="pll">
-          <div class="top">
-            <div class="net" id="net-pll-1"></div>
-            <div><div class="algo-name">T-Perm</div><div class="algo-stage">PLL</div></div>
-          </div>
-          <div class="algo-notation">R U R' U' R' F R2 U' R' U' R U R' F'</div>
-        </div>
+          ?>
 
-        <div class="algo-card" data-stage="pll">
-          <div class="top">
-            <div class="net" id="net-pll-2"></div>
-            <div><div class="algo-name">U-Perm (a)</div><div class="algo-stage">PLL</div></div>
-          </div>
-          <div class="algo-notation">R U' R U R U R U' R' U' R2</div>
-        </div>
 
-        <div class="algo-card" data-stage="pll">
-          <div class="top">
-            <div class="net" id="net-pll-3"></div>
-            <div><div class="algo-name">J-Perm (a)</div><div class="algo-stage">PLL</div></div>
-          </div>
-          <div class="algo-notation">R' U L' U2 R U' R' U2 R L</div>
-        </div>
 
       </div>
     </div>

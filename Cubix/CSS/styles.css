@@ -200,6 +200,8 @@
   .algo-card{ display:none; }
   .algo-card.show{ display:block; }
   .algo-card .top{ display:flex; gap:14px; align-items:flex-start; margin-bottom:12px; }
+  .algo-card .top img{ width:120px; height:120px; }
+
   .net{ display:grid; grid-template-columns:repeat(3,14px); grid-template-rows:repeat(3,14px); gap:2px; flex-shrink:0; }
   .net div{ border-radius:2px; }
   .algo-name{ font-family:var(--font-display); font-weight:600; font-size:15px; }

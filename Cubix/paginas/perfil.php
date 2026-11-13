@@ -53,7 +53,6 @@
       }
   }
 
-  // Cubos del catálogo que el usuario aún no tiene
   $catalogo = $c->ejecutarCosulta(
       "SELECT ID_Cubo, Marca, Modelo FROM Cubo
        WHERE ID_Cubo NOT IN (SELECT ID_Cubo FROM Usuario_Cubo WHERE ID_Usuario = ?)

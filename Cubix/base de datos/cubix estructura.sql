@@ -28,7 +28,8 @@ CREATE TABLE Algoritmo (
     ID_Algoritmo    INT AUTO_INCREMENT PRIMARY KEY,
     Metodo          VARCHAR(50) NOT NULL,
     Paso            VARCHAR(50) NOT NULL,
-    Nombre          VARCHAR(50)
+    imagen          VARCHAR(500) NOT NULL,
+    Nombre          VARCHAR(10)
 
 );
 
