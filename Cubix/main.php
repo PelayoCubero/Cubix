@@ -2,8 +2,12 @@
 
     session_start();
 
-?>
+    if (!isset($_SESSION['id_usuario'])) {
+        header('Location: index.php');
+        exit;
+    }
 
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -33,7 +37,9 @@
     </main>
 
     <script src="javaScript/script.js"></script>
+    <script src="javaScript/amigos.js"></script>
     <script src="javaScript/guardar_tiempo.js"></script>
+
 
 
   </body>

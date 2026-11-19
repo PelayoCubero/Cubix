@@ -163,7 +163,7 @@ INSERT INTO Algoritmo (Metodo, Paso, Nombre, imagen) VALUES
 
 INSERT INTO Algoritmo (Metodo, Paso, Nombre, imagen) VALUES
 
-('CFOP','PLL','Aa','/3x3x3/resolucio/fridrich/PLL/complet/A1_256.webp'),
+('CFOP','PLL','Aa','/3x3x3/resolucio/fridrich/PLL/complet/A2_256.webp'),
 ('CFOP','PLL','Ab','/3x3x3/resolucio/fridrich/PLL/complet/A1_256.webp'),
 ('CFOP','PLL','F','/3x3x3/resolucio/fridrich/PLL/complet/F_256.webp'),
 ('CFOP','PLL','Ga','/3x3x3/resolucio/fridrich/PLL/complet/G1_256.webp'),
@@ -234,8 +234,8 @@ INSERT INTO Mezcla (ID_Algoritmo, Combinacion) VALUES
 (14,"R' F R U R' F' R F U' F'"),
 (15,"L' B' L R' U' R U L' B L"),
 (16,"R B R' L U L' U' R B' R'"),
-(17,"r' R U R U R' U' r R2 F R F'"),
-(18,"r' R U R U R' U' r2 R2 U R U' r'"),
+(17,"R U R' U R' F R F' U2 R' F R F'"),
+(18,"F R U R' d R' U2 R' F R F'"),
 (19,"r' R U R U R' U' M' R' F R F'"),
 (20,"r U R' U' M2 U R U' R' U' M'"),
 (21,"R U2 R' U' R U R' U' R U' R'"),
@@ -246,7 +246,7 @@ INSERT INTO Mezcla (ID_Algoritmo, Combinacion) VALUES
 (26,"L' U R U' L U R'"),
 (27,"R U R' U R U2 R'"),
 (28,"M' U' M U2 M' U' M"),
-(29,"U' R U R' U' R U' R' F' U' F R U R'"),
+(29,"L2 U' L B L' U L2 U' r' U' r"),
 (30,"R2 U R' B' R U' R2 U l U l'"),
 (31,"R' U' F U R U' R' F' R"),
 (32,"L U F' U' L' U L F L'"),
@@ -258,8 +258,8 @@ INSERT INTO Mezcla (ID_Algoritmo, Combinacion) VALUES
 (38,"R U R' U R U' R' U' R' F R F'"),
 (39,"L F' L' U' L U F U' L'"),
 (40,"R' F R U R' U' F' U R"),
-(41,"R U R' U R U2 R' F R U R' U' F'"),
-(42,"U2 R' U' R U' R' U2 R F R U R' U' F'"),
+(41,"R U' R' U2 R U y R U' R' U' F'"),
+(42,"L' U L U2' L' U' y' L' U L U F"),
 (43,"F' U' L' U L F"),
 (44,"F U R U' R' F'"),
 (45,"F R U R' U' F'"),
@@ -276,8 +276,8 @@ INSERT INTO Mezcla (ID_Algoritmo, Combinacion) VALUES
 (56,"r' U' r U' R' U R U' R' U R r' U r"),
 (57,"R U R' U' M' U R U' r'"),
 
-(58,"x L2 D2 L' U' L D2 L' U L'"),
-(59,"R U R2 F' r U R U' r' F R U' R'"),
+(58,"R U R2 F' r U R U' r' F R U' R'"),
+(59,"R U R' F' r U R' U' r' F R2 U' R'"),
 (60,"R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R"),
 (61,"R2 U R' U R' U' R U' R2 U' D R' U R D'"),
 (62,"F' U' F R2 u R' U R U' R u' R2"),
@@ -286,7 +286,7 @@ INSERT INTO Mezcla (ID_Algoritmo, Combinacion) VALUES
 (65,"R' U' R2 B R' U' R' U R B' R' U R"),
 (66,"R U R' F' R U R' U' R' F R2 U' R'"),
 (67,"R U' R' U' R U R D R' U' R D' R' U2 R'"),
-(68,"R2 F R U R U' R' F' R U2 R' U2 R"),
+(68,"R' U2 R U2 R' F R U R' U' R' F' R2"),
 (69,"R U R' U' R' F R2 U' R' U' R U R' F'"),
 (70,"x' L' U L D' L' U' L D L' U' L D' L' U L D"),
 (71,"R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R'"),
@@ -294,9 +294,9 @@ INSERT INTO Mezcla (ID_Algoritmo, Combinacion) VALUES
 (73,"R' U R' U' y R' F' R2 U' R' U R' F R F"),
 (74,"F R U' R' U' R U R' F' R U R' U' R' F R F'"),
 (75,"M2 U M2 U2 M2 U M2"),
-(76,"M2 U M U2 M' U M2"),
+(76,"R' U R' U' R' U' R' U R U R2"),
 (77,"R U R' U R' U' R2 U' R' U R' U R"),
-(78,"R' U R' U' R' U' R' U R U R2"),
+(78,"M2 U' M2 U' M' U2 M2 U2 M'"),
 
 (79,"U' F' U F"),
 (80,"U R U' R'"),
@@ -338,162 +338,4 @@ INSERT INTO Usuario
 ('Pablo', 'Gomez', 'pablo.gomez@gmail.com', 'pablo123', '2023GOME07'),
 ('Top 0', 'Del universo', 'rubenrodcerr@gmail.com', '123456', NULL),
 ('Laura', 'Diaz', 'laura.diaz@gmail.com', 'laura123', NULL);
-
-
--- ============================================
--- USUARIO_CUBO
--- ============================================
-
-INSERT INTO Usuario_Cubo (ID_Usuario, ID_Cubo) VALUES
-(1, 1),
-(1, 2),
-(2, 2),
-(2, 3),
-(3, 1),
-(3, 4),
-(4, 3),
-(4, 5),
-(5, 1),
-(5, 5),
-(6, 2),
-(6, 6),
-(7, 4),
-(7, 6),
-(8, 3);
-
-
--- ============================================
--- USUARIO_ALGORITMO
--- ============================================
-
-INSERT INTO Usuario_Algoritmo (ID_Usuario, ID_Algoritmo) VALUES
-(1, 1),
-(1, 3),
-(1, 4),
-(1, 6),
-
-(2, 1),
-(2, 2),
-(2, 5),
-
-(3, 3),
-(3, 4),
-(3, 7),
-
-(4, 1),
-(4, 5),
-(4, 12),
-
-(5, 3),
-(5, 6),
-(5, 9),
-
-(6, 2),
-(6, 4),
-(6, 8),
-
-(7, 1),
-(7, 3),
-(7, 11),
-
-(8, 5),
-(8, 10);
-
-
--- ============================================
--- TIEMPO
--- ============================================
-
-INSERT INTO Tiempo 
-(Tiempo, Fecha, Mezcla, Mas_2, DNF, ID_Usuario, ID_Cubo) VALUES
-
-('00:00:12.15', '2026-10-01',
- 'R U R'' U'' F R U R'' U'' F''',
- FALSE, FALSE, 1, 1),
-
-('00:00:10.09', '2026-10-02',
- 'F R U R'' U'' F'' U2',
- FALSE, FALSE, 1, 1),
-
-('00:00:09.97', '2026-10-03',
- 'R2 U R2 F2 U2 R2 U2 F2',
- FALSE, FALSE, 1, 2),
-
-('00:00:14.32', '2026-10-03',
- 'U R2 F B R B2 R U2 L B2 R U'' D'' R2 F R'' L B2 U2 F2',
- FALSE, FALSE, 2, 2),
-
-('00:00:11.12', '2026-10-04',
- 'R U2 F'' R'' U'' L U R U'' L''',
- FALSE, FALSE, 2, 3),
-
-('00:00:08.01', '2026-10-05',
- 'L2 B2 U R'' U L2 B2 U'' R U''',
- FALSE, FALSE, 3, 1),
-
-('00:00:13.96', '2026-10-05',
- 'F R2 D2 B R'' U2 F2 L B2 U R2',
- FALSE, FALSE, 3, 4),
-
-('00:00:15.87', '2026-10-06',
- 'R U R'' U R U2 R'' F R U R'' U'' F''',
- FALSE, FALSE, 4, 3),
-
-('00:00:18.12', '2026-10-07',
- 'U2 R2 F2 D2 L2 B2 U R2 F2',
- FALSE, FALSE, 4, 5),
-
-('00:00:12.43', '2026-10-08',
- 'R'' F R F'' U2 R U R''',
- FALSE, FALSE, 5, 1),
-
-('00:00:16.21', '2026-10-08',
- 'F2 U L2 R2 F2 U2 B2 R2',
- FALSE, FALSE, 5, 5),
-
-('00:00:09.23', '2026-10-09',
- 'R U2 R2 F R F'' U2 R'' F R''',
- FALSE, FALSE, 6, 2),
-
-('00:00:07.32', '2026-10-10',
- 'U R U'' L'' U R'' U'' L',
- FALSE, FALSE, 6, 6),
-
-('00:00:20.31', '2026-10-10',
- 'B2 U2 R2 F2 L2 D2 B2',
- TRUE, FALSE, 7, 4),
-
-('00:00:17.45', '2026-10-11',
- 'R2 U2 F2 R2 B2 L2 U'' R2',
- FALSE, FALSE, 7, 6),
-
-('00:00:11.57', '2026-10-12',
- 'R U R'' U'' R'' F R F''',
- FALSE, FALSE, 8, 3),
-
-('00:00:25.25', '2026-10-12',
- 'F R U R'' U'' F'' R U2 R''',
- FALSE, TRUE, 8, 3);
-
-
--- ============================================
--- AMIGO
--- ============================================
-
-INSERT INTO Amigo (ID_Usuario, ID_Amigo) VALUES
-(1, 2),
-(1, 3),
-(2, 1),
-(2, 4),
-(3, 1),
-(3, 5),
-(4, 2),
-(4, 6),
-(5, 3),
-(5, 7),
-(6, 4),
-(6, 8),
-(7, 5),
-(7, 8),
-(8, 6);
 

@@ -1,7 +1,6 @@
 <section class="view" id="algos">
     <div class="view-header">
       <h1>Algoritmos</h1>
-      <h4 style = "color:gray;">imagenes orginales de <a href="https://myrubik.com/">myrubik.com</a></h4>
     </div>
     
     <div id="cfopPanel">
@@ -25,16 +24,16 @@
             $stage = strtolower($item["paso"]);
             $show  = ($stage === "f2l") ? " show" : "";
 
-            echo "<div class=\"algo-card$show\" data-stage=\"" . htmlspecialchars($stage) . "\">
-            <div class=\"top\">
-                  <div>
-                    <div class=\"algo-name\">" . htmlspecialchars($item["nom"]) . "</div>
-                    <div class=\"algo-stage\">" . htmlspecialchars($item["paso"]) . "</div>
-                  </div>
-                      <img class=\"algo-img\" src=\"https://myrubik.com/" . htmlspecialchars($item["img"] ?? "") . "\">
+            echo "<div class=\"algo-card" .$show. "\" data-stage=\"" . htmlspecialchars($stage) . "\">
+                    <div class=\"top\">
+                      <div>
+                        <div class=\"algo-name\">" . htmlspecialchars($item["nom"]) . "</div>
+                      </div>
+                        <img class=\"algo-img\" src=\"https://myrubik.com/" . htmlspecialchars($item["img"] ?? "") . "\">
                     </div>
                     <div class=\"algo-notation\">" . htmlspecialchars($item["scb"]) . "</div>
                   </div>";
+                    
   }
 
             $c->desconectar();
@@ -46,5 +45,8 @@
 
       </div>
     </div>
+      <p style = "color:gray;">imagenes orginales de <a target="_blank" href="https://myrubik.com/">myrubik.com</a></p>
+      <p style = "color:gray;">algoritmos orginales de <a target="_blank" href="https://myrubik.com/">myrubik.com</a>, de <a target="_blank" href="https://jperm.net/">jperm.net</a> y de <a target="_blank" href="https://kubekings.com">kubekings.com</a></p>
+      <br><br>
   </section>
   

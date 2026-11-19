@@ -196,26 +196,15 @@
   .tab{ background:none; border:1px solid var(--border); color:var(--text-dim); padding:8px 16px; border-radius:8px; font-size:13.5px; font-weight:500; }
   .tab.active{ border-color:var(--green-face); color:var(--green-face); background:rgba(61,220,132,0.08); }
 
-  .algo-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px; }
+  .algo-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px; margin-bottom: 50px; margin-top: 40px;}
   .algo-card{ display:none; }
   .algo-card.show{ display:block; }
-  .algo-card .top{ display:flex; gap:14px; align-items:flex-start; margin-bottom:12px; }
+  .algo-card .top{ display:flex; gap:14px; align-items:flex-start; margin-bottom:12px; margin-top: 12px;}
   .algo-card .top img{ width:120px; height:120px; }
 
-  .net{ display:grid; grid-template-columns:repeat(3,14px); grid-template-rows:repeat(3,14px); gap:2px; flex-shrink:0; }
-  .net div{ border-radius:2px; }
-  .algo-name{ font-family:var(--font-display); font-weight:600; font-size:15px; }
+  .algo-name{ font-family:var(--font-display); font-weight:600; font-size:15px; margin: 10px; width: 50px;}
   .algo-stage{ font-size:11px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em; margin-top:2px; }
   .algo-notation{ font-family:var(--font-mono); font-size:13px; background:var(--bg-elev-2); padding:9px 11px; border-radius:7px; color:var(--text); line-height:1.5; word-break:break-word; }
-
-  .flash-section{ margin-top:34px; display:flex; gap:24px; align-items:center; flex-wrap:wrap; }
-  .flashcard{ width:230px; height:150px; perspective:800px; }
-  .flashcard-inner{ position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d; }
-  .flashcard.flipped .flashcard-inner{ transform:rotateY(180deg); }
-  .flash-face{ position:absolute; inset:0; backface-visibility:hidden; border-radius:10px; border:1px solid var(--border); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:14px; text-align:center; }
-  .flash-face.front{ background:var(--bg-elev-2); }
-  .flash-face.back{ background:var(--bg-elev-2); transform:rotateY(180deg); }
-  .flash-face .fq{ font-size:11px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em; }
 
   /* ---------- Perfil ---------- */
   .profile-head{ display:flex; align-items:center; gap:20px; margin-bottom:30px; }
@@ -245,36 +234,6 @@
   th{ text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-faint); padding:8px 10px; border-bottom:1px solid var(--border); }
   td{ padding:11px 10px; border-bottom:1px solid var(--border); }
   td.mono, .mono-cell{ font-family:var(--font-mono); }
-
-  /* ---------- Competiciones ---------- */
-  .comp-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:24px; }
-  .friend-row{ display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid var(--border); }
-  .friend-row:last-child{ border:none; }
-  .status-dot{ width:8px; height:8px; border-radius:50%; background:var(--green-face); flex-shrink:0; }
-  .friend-row .fname{ flex:1; font-size:13.5px; }
-
-  .filter-row{ display:flex; gap:8px; margin-bottom:14px; }
-
-  .group-card{ display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-bottom:1px solid var(--border); }
-  .group-card:last-child{ border:none; }
-  .group-card .gname{ font-weight:600; font-size:14.5px; }
-  .group-card .gmeta{ font-size:12px; color:var(--text-faint); margin-top:3px; }
-
-  .flag{ font-family:var(--font-mono); font-size:11px; color:var(--text-faint); }
-
-  ::-webkit-scrollbar{ height:8px; width:8px; }
-  ::-webkit-scrollbar-thumb{ background:var(--bg-elev-2); border-radius:4px; }
-
-  @media (max-width: 900px){
-    body{ flex-direction:column; }
-    .sidebar{ position:relative; height:auto; width:100%; flex-direction:row; align-items:center; overflow-x:auto; }
-    nav.mainnav{ flex-direction:row; }
-    .sidebar-footer{ display:none; }
-    main{ padding:20px; }
-    .dash-grid, .timer-layout, .comp-grid{ grid-template-columns:1fr; }
-    .time-display{ font-size:56px; }
-  }
-
 
 /* ---------- Login + Registro ---------- */
   .login-card{ width:100%; max-width:380px; background:var(--bg-elev); border:1px solid var(--border); border-radius:14px; padding:34px 30px; }

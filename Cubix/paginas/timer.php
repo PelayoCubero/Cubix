@@ -15,7 +15,7 @@
 
   $c->desconectar();
 
-  if($tiempo == NULL){$tiempo = 0.0;}
+  if($tiempo == NULL){$tiempo = "--";}
 
 ?>
 
@@ -86,10 +86,14 @@
 
           ?>
 
+<br>
+          <br>
+          <div class="timer-hint" id="timerHint">Actualiza para ver todos tus cubos</div>
+
           
         </div>
       </div>
     </div>
-
+<br>
   </section>
 

@@ -136,7 +136,7 @@
 
 (function () {
  
-  var PROHIBIDOS = /[()\/\\"<>]/;
+  var PROHIBIDOS = /[()\/\\"<>]/g;
  
   function limpiar(el) {
     var original = el.value;

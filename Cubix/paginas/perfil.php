@@ -1,27 +1,33 @@
-  <?php
+<?php
 
-  $sql = "SELECT usuario.WCA_ID as wca, CASE WHEN Tiempo.Tiempo >= '00:01:00' THEN CONCAT( TIME_FORMAT(Tiempo.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(Tiempo.Tiempo, '%f'), 2) ) ELSE CONCAT( TIME_FORMAT(Tiempo.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(Tiempo.Tiempo, '%f'), 2) ) END AS tiempo FROM Usuario JOIN Tiempo ON Usuario.ID_Usuario = Tiempo.ID_Usuario JOIN Cubo ON Tiempo.ID_Cubo = Cubo.ID_Cubo WHERE Usuario.ID_Usuario = ? AND Tiempo.Tiempo = ( SELECT MIN(T2.Tiempo) FROM Tiempo T2 WHERE T2.ID_Usuario = ? );";
   $c = new Conexion();
   $c->conectar();
 
-  $datos = $c->ejecutarCosulta($sql, [$_SESSION["id_usuario"],$_SESSION["id_usuario"]]);
-  $tiempo = NULL;
-  $wca = NULL;
- 
-  foreach($datos as $item){
+  // WCA ID: sale directamente de Usuario (no depende de que haya tiempos guardados)
+  $u = $c->ejecutarCosulta("SELECT WCA_ID AS wca FROM Usuario WHERE ID_Usuario = ?", [$_SESSION["id_usuario"]]);
+  $wcaId = $u[0]["wca"] ?? NULL;
 
-    $tiempo = $item["tiempo"];
-    $wca = $item["wca"];
-
-      
-  }
-
+  // Mejor tiempo (sin contar DNF)
+  $r = $c->ejecutarCosulta(
+      "SELECT CASE WHEN T.Tiempo >= '00:01:00'
+                   THEN CONCAT(TIME_FORMAT(T.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2))
+                   ELSE CONCAT(TIME_FORMAT(T.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2))
+              END AS tiempo
+       FROM Tiempo T
+       WHERE T.ID_Usuario = ? AND T.DNF = 0
+       ORDER BY T.Tiempo ASC
+       LIMIT 1",
+      [$_SESSION["id_usuario"]]
+  );
   $c->desconectar();
 
-  if($tiempo == NULL){$tiempo = 0.0;}
-  if($wca == NULL){$wca = " ";}
-  else {$wca = "WCA ID <a href = \"https://www.worldcubeassociation.org/persons/" . $wca . "\" target=\"_blank\">" . $wca . "</a>";}
+  $tiempo = $r[0]["tiempo"] ?? "--";
 
+  if ($wcaId === NULL || trim($wcaId) === "") { $wca = " "; }
+  else {
+    $wcaSeguro = htmlspecialchars($wcaId);
+    $wca = "WCA ID <a href=\"https://www.worldcubeassociation.org/persons/" . rawurlencode($wcaId) . "\" target=\"_blank\">" . $wcaSeguro . "</a>";
+  }
 
 ?>
   
@@ -31,11 +37,11 @@
     </div>
 
     <div class="profile-head">
-      <div class="avatar-big"><?php echo $_SESSION["nombre"][0] . $_SESSION["apellido"][0] ?></div>
+      <div class="avatar-big"><?php echo strtoupper($_SESSION["nombre"][0]) . strtoupper($_SESSION["apellido"][0]) ?></div>
       <div>
         <div class="pname"><?php echo $_SESSION["nombre"] . " " .$_SESSION["apellido"] ?></div>
         <div class="phandle"><?php echo $wca ?></div>
-        <span class="badge-inline"><?php echo round($tiempo, 2) ?> record</span>
+        <span class="badge-inline"><?php echo htmlspecialchars($tiempo) ?> record</span>
       <a href="logout.php" class="btn btn-outline btn-small">Cerrar sesión</a>
 
       </div>
@@ -119,7 +125,8 @@
   <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["anadir_cubo"])): ?>
   <script>
     if (window.history.replaceState) {
-      window.history.replaceState(null, null, window.location.href);
+       window.history.replaceState(null, null, window.location.href);
+
     }
     window.addEventListener('load', () => showView('perfil'));
   </script>

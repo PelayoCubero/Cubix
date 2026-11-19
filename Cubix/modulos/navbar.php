@@ -15,7 +15,7 @@
     <button class="navbtn" data-view="perfil"><span class="navdot" style="background:var(--blue-face)"></span>Perfil</button>
   </nav>
   <div class="sidebar-footer" onclick="showView('perfil')">
-    <div class="mini-avatar"><?php echo $_SESSION["nombre"][0] . $_SESSION["apellido"][0] ?></div>
+    <div class="mini-avatar"><?php echo strtoupper($_SESSION["nombre"][0]) . strtoupper($_SESSION["apellido"][0]) ?></div>
     <div>
       <div class="name"><?php echo $_SESSION["nombre"] . " " .$_SESSION["apellido"] ?>
       </div>
