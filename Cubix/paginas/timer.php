@@ -1,10 +1,11 @@
 <?php
 
-  $sql = "SELECT CASE WHEN Tiempo.Tiempo >= '00:01:00' THEN CONCAT( TIME_FORMAT(Tiempo.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(Tiempo.Tiempo, '%f'), 2) ) ELSE CONCAT( TIME_FORMAT(Tiempo.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(Tiempo.Tiempo, '%f'), 2) ) END AS tiempo FROM Usuario JOIN Tiempo ON Usuario.ID_Usuario = Tiempo.ID_Usuario JOIN Cubo ON Tiempo.ID_Cubo = Cubo.ID_Cubo WHERE Usuario.ID_Usuario = ? AND Tiempo.Tiempo = ( SELECT MIN(T2.Tiempo) FROM Tiempo T2 WHERE T2.ID_Usuario = ? );";
+  // Mejor tiempo (sin contar DNF), con el mismo criterio que el perfil y el borrado de tiempos
+  $sql = "SELECT CASE WHEN T.Tiempo >= '00:01:00' THEN CONCAT( TIME_FORMAT(T.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2) ) ELSE CONCAT( TIME_FORMAT(T.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2) ) END AS tiempo FROM Tiempo T WHERE T.ID_Usuario = ? AND T.DNF = 0 ORDER BY T.Tiempo ASC LIMIT 1;";
   $c = new Conexion();
   $c->conectar();
 
-  $datos = $c->ejecutarCosulta($sql, [$_SESSION["id_usuario"],$_SESSION["id_usuario"]]);
+  $datos = $c->ejecutarCosulta($sql, [$_SESSION["id_usuario"]]);
   $tiempo = NULL;
  
   foreach($datos as $item){
@@ -37,7 +38,9 @@
           <button class="btn btn-outline" id="btnDNF">DNF</button>
 
         </div>
-          <br>
+        <br>
+          <div class="pb-tag" style= "font-size:15px;"><b id="recordT"><?php echo $tiempo ?></b> record</div>
+          <br><br>
           <h2>ultima sesión</h2>
           <ul class="solve-list" id="solvesList"></ul>
       </div>
@@ -54,7 +57,7 @@
 
         <div class="card" style ="display: flex; justify-content : center;">
 
-          <div class="pb-tag" style= "font-size:30px;"><b><?php echo $tiempo ?></b> record</div>
+          <button class="btn btn-primary" onclick="showView('perfil')">ver todos mis tiempos</button>
 
           
         </div>
@@ -73,7 +76,7 @@
                 WHERE UC.ID_Usuario = ?",
                 [$_SESSION["id_usuario"]]
             );
-             echo  "<select id=\"selCubo\" style = \"width: 100%;\"><option value=\"\">Modelo…</option>";
+             echo  "<select id=\"selCubo\" style = \"width: 100%;\">";
             foreach ($datos as $item) {    
 
               echo "<option value = ".$item["idc"].">" .$item["marca"]." ".$item["modelo"]. "</option>";

@@ -164,6 +164,16 @@
   .streak-box{ display:flex; align-items:center; justify-content:space-between; }
   .streak-num{ font-family:var(--font-display); font-size:26px; font-weight:700; color:var(--orange-face); }
 
+  .ranking .rank-num{ width:26px; font-weight:700; }
+  .ranking .rank-row.p1 .rank-num{ color:var(--yellow-face); }
+  .ranking .rank-row.p2 .rank-num{ color:var(--text); }
+  .ranking .rank-row.p3 .rank-num{ color:var(--orange-face); }
+  .ranking .rank-row.me{ background:rgba(255,212,59,.10); border-radius:8px; margin:2px -8px; padding:9px 8px; border-bottom-color:transparent; box-shadow:inset 3px 0 0 var(--yellow-face); }
+  .ranking .rank-row.me .rname{ font-weight:600; }
+  .ranking .me-tag{ font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; background:var(--yellow-face); color:#1a1706; border-radius:5px; padding:2px 6px; margin-left:6px; }
+  .ranking .rtime.sin{ color:var(--text-faint); }
+  .ranking .hint{ font-size:12.5px; color:var(--text-faint); margin-top:12px; }
+
   /* ---------- Timer ---------- */
   .timer-layout{ display:grid; grid-template-columns:1fr 260px; gap:24px; }
   .timer-stage{ text-align:center; padding:40px 20px 34px; }
@@ -197,14 +207,14 @@
   .tab.active{ border-color:var(--green-face); color:var(--green-face); background:rgba(61,220,132,0.08); }
 
   .algo-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px; margin-bottom: 50px; margin-top: 40px;}
-  .algo-card{ display:none; }
+  .algo-card{ display:none; background:var(--bg-elev); border-radius:var(--radius);}
   .algo-card.show{ display:block; }
   .algo-card .top{ display:flex; gap:14px; align-items:flex-start; margin-bottom:12px; margin-top: 12px;}
   .algo-card .top img{ width:120px; height:120px; }
 
   .algo-name{ font-family:var(--font-display); font-weight:600; font-size:15px; margin: 10px; width: 50px;}
   .algo-stage{ font-size:11px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em; margin-top:2px; }
-  .algo-notation{ font-family:var(--font-mono); font-size:13px; background:var(--bg-elev-2); padding:9px 11px; border-radius:7px; color:var(--text); line-height:1.5; word-break:break-word; }
+  .algo-notation{ font-family:var(--font-mono); font-size:13px; background:var(--bg-elev-2); padding:9px 11px; border-radius:7px; margin: 10px; color:var(--text); line-height:1.5; word-break:break-word; }
 
   /* ---------- Perfil ---------- */
   .profile-head{ display:flex; align-items:center; gap:20px; margin-bottom:30px; }
@@ -234,6 +244,7 @@
   th{ text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-faint); padding:8px 10px; border-bottom:1px solid var(--border); }
   td{ padding:11px 10px; border-bottom:1px solid var(--border); }
   td.mono, .mono-cell{ font-family:var(--font-mono); }
+  .icono-basura{width: 25px; height: 25px;}
 
 /* ---------- Login + Registro ---------- */
   .login-card{ width:100%; max-width:380px; background:var(--bg-elev); border:1px solid var(--border); border-radius:14px; padding:34px 30px; }
@@ -247,21 +258,18 @@
   .field input:focus{ border-color:var(--yellow-face); }
   .login-error{ background:rgba(255,90,95,.1); border:1px solid var(--red-face); color:var(--red-face); border-radius:8px; padding:10px 12px; font-size:13px; margin-bottom:16px; }
   .login-card .btn{ width:100%; margin-top:6px; }
-
-  .login-card{ width:100%; max-width:420px; background:var(--bg-elev); border:1px solid var(--border); border-radius:14px; padding:34px 30px; }
-  .login-logo{ display:flex; flex-direction:column; align-items:center; gap:10px; margin-bottom:26px; }
-  .login-logo img{ width:84px; height:84px; object-fit:contain; border-radius:12px; background:#fff; }
-  .login-logo .brand-name{ font-size:24px; }
-  .login-sub{ color:var(--text-dim); font-size:13.5px; text-align:center; margin-top:-4px; }
   .row2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  .field{ margin-bottom:16px; }
-  .field label{ display:block; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-faint); margin-bottom:6px; }
-  .field input{ width:100%; background:var(--bg-elev-2); border:1px solid var(--border); border-radius:8px; padding:11px 12px; color:var(--text); font-family:var(--font-body); font-size:14.5px; outline:none; transition:border-color .15s; }
-  .field input:focus{ border-color:var(--yellow-face); }
   .field .opt{ text-transform:none; letter-spacing:0; color:var(--text-faint); }
-  .login-error{ background:rgba(255,90,95,.1); border:1px solid var(--red-face); color:var(--red-face); border-radius:8px; padding:10px 12px; font-size:13px; margin-bottom:16px; }
-  .login-card .btn{ width:100%; margin-top:6px; }
   .alt-link{ text-align:center; font-size:13px; color:var(--text-dim); margin-top:18px; }
   .alt-link a{ color:var(--yellow-face); font-weight:600; }
 
+  .field input{ width:100%; background:var(--bg-elev-2); border:1px solid var(--border); border-radius:8px; padding:11px 12px; color:var(--text); font-family:var(--font-body); font-size:14.5px; outline:none; transition:border-color .15s; }
   select {background:var(--bg-elev-2); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:10px;}
+
+  /* ---------- Eliminar tiempos (perfil y cronómetro) ---------- */
+  .del-btn{ background:none; border:none; color:var(--text-faint); font-size:14px; line-height:1; padding:5px 8px; border-radius:6px; cursor:pointer; transition:color .15s, background .15s; }
+  .del-btn:hover, .del-btn:focus-visible{ color:var(--red-face); background:rgba(255,90,95,.12); outline:none; }
+  .solve-list li .t{ margin-left:auto; }
+  .solve-list li .del-btn{ margin-left:10px; padding:2px 6px; }
+  td.acc{ width:44px; text-align:right; padding-right:6px; }
+  td.vacio{ color:var(--text-faint); text-align:center; }

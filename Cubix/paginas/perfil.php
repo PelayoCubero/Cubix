@@ -3,25 +3,12 @@
   $c = new Conexion();
   $c->conectar();
 
-  // WCA ID: sale directamente de Usuario (no depende de que haya tiempos guardados)
-  $u = $c->ejecutarCosulta("SELECT WCA_ID AS wca FROM Usuario WHERE ID_Usuario = ?", [$_SESSION["id_usuario"]]);
-  $wcaId = $u[0]["wca"] ?? NULL;
+  $wcaId = $c->ejecutarCosulta("SELECT WCA_ID AS wca FROM Usuario WHERE ID_Usuario = ?", [$_SESSION["id_usuario"]])[0]["wca"] ?? NULL;
 
-  // Mejor tiempo (sin contar DNF)
-  $r = $c->ejecutarCosulta(
-      "SELECT CASE WHEN T.Tiempo >= '00:01:00'
-                   THEN CONCAT(TIME_FORMAT(T.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2))
-                   ELSE CONCAT(TIME_FORMAT(T.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2))
-              END AS tiempo
-       FROM Tiempo T
-       WHERE T.ID_Usuario = ? AND T.DNF = 0
-       ORDER BY T.Tiempo ASC
-       LIMIT 1",
-      [$_SESSION["id_usuario"]]
-  );
+  $r = $c->ejecutarCosulta("SELECT CASE WHEN T.Tiempo >= '00:01:00' THEN CONCAT(TIME_FORMAT(T.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2)) ELSE CONCAT(TIME_FORMAT(T.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2)) END AS tiempo FROM Tiempo T WHERE T.ID_Usuario = ? AND T.DNF = 0 ORDER BY T.Tiempo ASC LIMIT 1", [$_SESSION["id_usuario"]]);
+  $tiempo = $r[0]["tiempo"] ?? "--";
   $c->desconectar();
 
-  $tiempo = $r[0]["tiempo"] ?? "--";
 
   if ($wcaId === NULL || trim($wcaId) === "") { $wca = " "; }
   else {
@@ -37,11 +24,11 @@
     </div>
 
     <div class="profile-head">
-      <div class="avatar-big"><?php echo strtoupper($_SESSION["nombre"][0]) . strtoupper($_SESSION["apellido"][0]) ?></div>
+      <div class="avatar-big"><?php echo strtoupper($_SESSION["nombre"][0]) . strtoupper($_SESSION["apellido"][0])?></div>
       <div>
-        <div class="pname"><?php echo $_SESSION["nombre"] . " " .$_SESSION["apellido"] ?></div>
+        <div class="pname"><?php echo $_SESSION["nombre"] . " " .$_SESSION["apellido"] . " ( " . $_SESSION["id_usuario"] . " ) "?></div>
         <div class="phandle"><?php echo $wca ?></div>
-        <span class="badge-inline"><?php echo htmlspecialchars($tiempo) ?> record</span>
+        <span class="badge-inline" id="recordPerfil"><?php echo htmlspecialchars($tiempo) ?> record</span>
       <a href="logout.php" class="btn btn-outline btn-small">Cerrar sesión</a>
 
       </div>
@@ -137,32 +124,40 @@
     <h2>Historial tiempos</h2>
     <div class="card">
       <table>
-        <thead><tr><th>Mezcla</th><th>Tiempo</th><th>Fecha</th><th>Cubo</th></tr></thead>
-        <tbody>
+        <thead><tr><th>Mezcla</th><th>Tiempo</th><th>Fecha</th><th>Cubo</th><th></th></tr></thead>
+        <tbody id="historialTiempos">
 
          <?php
 
-            $sql = "SELECT CASE WHEN T.Tiempo >= '00:01:00' THEN CONCAT( TIME_FORMAT(T.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2) ) ELSE CONCAT( TIME_FORMAT(T.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2) ) END AS tiempo, C.Marca AS marca, C.Modelo AS modelo, T.Mezcla AS mezcla, T.Fecha AS fecha FROM Tiempo T JOIN Cubo C ON T.ID_Cubo = C.ID_Cubo WHERE T.ID_Usuario = ? ORDER BY T.Fecha DESC LIMIT 5;";
+            $sql = "SELECT T.ID_Tiempo AS idt, CASE WHEN T.Tiempo >= '00:01:00' THEN CONCAT( TIME_FORMAT(T.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2) ) ELSE CONCAT( TIME_FORMAT(T.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2) ) END AS tiempo, C.Marca AS marca, C.Modelo AS modelo, T.Mezcla AS mezcla, T.Fecha AS fecha FROM Tiempo T JOIN Cubo C ON T.ID_Cubo = C.ID_Cubo WHERE T.ID_Usuario = ? ORDER BY T.Fecha DESC, T.ID_Tiempo DESC;";
             $c = new Conexion();
             $c->conectar();
 
             $datos = $c->ejecutarCosulta($sql, [$_SESSION["id_usuario"]]);
-            $tiempo = NULL;
-            $wca = NULL;
-          
+
             foreach($datos as $item){
 
-            echo "<tr><td>" .$item["mezcla"]. "</td><td class=\"mono\"> ".$item["tiempo"]. " </td><td>" .$item["fecha"]. "</td><td>" .$item["marca"]." ".$item["modelo"]. "</td></tr>";
-                
+              $idt = (int)$item["idt"];
+
+              echo "<tr data-tiempo=\"$idt\"><td>" . htmlspecialchars($item["mezcla"]) . "</td><td class=\"mono\"> " . htmlspecialchars($item["tiempo"]) . " </td><td>" . htmlspecialchars($item["fecha"]) . "</td><td>" . htmlspecialchars($item["marca"] . " " . $item["modelo"]) . "</td><td class=\"acc\"><button type=\"button\" class=\"del-btn\" data-eliminar=\"$idt\" title=\"Eliminar tiempo\" aria-label=\"Eliminar tiempo\"><img class= \"icono-basura\" src=\"imagenes/basura.png\"></button></td></tr>";
+
+            }
+
+            if (!$datos) {
+              echo "<tr><td colspan=\"5\" class=\"vacio\">Aún no tienes tiempos guardados.</td></tr>";
             }
 
             $c->desconectar();
 
-
           ?>
-
 
         </tbody>
       </table>
     </div>
   </section>
+
+
+
+
+
+

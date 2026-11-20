@@ -89,6 +89,46 @@ try {
         responder(true);
     }
 
+    // ---------- Eliminar un tiempo (lo usan el perfil y el cronómetro) ----------
+    if ($accion === 'eliminar') {
+
+        $id = (int)($_POST['id'] ?? 0);
+
+        if ($id <= 0) {
+            responder(false, ['error' => 'Datos no válidos'], 400);
+        }
+
+        // Solo se pueden borrar tiempos propios
+        $propio = $c->ejecutarCosulta(
+            "SELECT 1 FROM Tiempo WHERE ID_Tiempo = ? AND ID_Usuario = ?",
+            [$id, $idUsuario]
+        );
+        if (!$propio) {
+            responder(false, ['error' => 'Ese tiempo no existe'], 404);
+        }
+
+        $c->ejecutarCosulta(
+            "DELETE FROM Tiempo WHERE ID_Tiempo = ? AND ID_Usuario = ?",
+            [$id, $idUsuario]
+        );
+
+        // Nuevo récord (sin DNF), con el mismo formato que muestran el perfil y el cronómetro
+        $r = $c->ejecutarCosulta(
+            "SELECT CASE WHEN T.Tiempo >= '00:01:00'
+                         THEN CONCAT(TIME_FORMAT(T.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2))
+                         ELSE CONCAT(TIME_FORMAT(T.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2))
+                    END AS tiempo
+             FROM Tiempo T
+             WHERE T.ID_Usuario = ? AND T.DNF = 0
+             ORDER BY T.Tiempo ASC
+             LIMIT 1",
+            [$idUsuario]
+        );
+        $c->desconectar();
+
+        responder(true, ['record' => $r[0]['tiempo'] ?? '--']);
+    }
+
     $c->desconectar();
     responder(false, ['error' => 'Acción desconocida'], 400);
 

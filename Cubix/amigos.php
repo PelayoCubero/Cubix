@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 try {
 
     include("./Conexion/Conexion.php");
+    include_once __DIR__ . '/modulos/ranking.php';
 
     $yo = (int)$_SESSION['id_usuario'];
     $accion = $_POST['accion'] ?? '';
@@ -31,18 +32,8 @@ try {
         $q = trim($_POST['q'] ?? '');
 
         if ($q === '') {
-            // Sin texto: unas cuantas sugerencias
-            $usuarios = $c->ejecutarCosulta(
-                "SELECT U.ID_Usuario AS id, U.Nombre AS nom, U.Apellido AS ape
-                 FROM Usuario U
-                 WHERE U.ID_Usuario <> ?
-                   AND U.ID_Usuario NOT IN (SELECT ID_Amigo FROM Amigo WHERE ID_Usuario = ?)
-                 ORDER BY U.ID_Usuario
-                 LIMIT 8",
-                [$yo, $yo]
-            );
+            $usuarios = [];
         } elseif (ctype_digit($q) && strlen($q) <= 10) {
-            // ID exacto
             $usuarios = $c->ejecutarCosulta(
                 "SELECT U.ID_Usuario AS id, U.Nombre AS nom, U.Apellido AS ape
                  FROM Usuario U
@@ -52,7 +43,7 @@ try {
                 [(int)$q, $yo, $yo]
             );
         } else {
-            $usuarios = [];   // no es un número: sin resultados
+            $usuarios = [];
         }
         $c->desconectar();
 
@@ -77,20 +68,20 @@ try {
             responder(false, ['error' => 'Ese usuario no existe'], 400);
         }
 
-        // INSERT IGNORE: si ya eran amigos (clave primaria), no da error
         $c->ejecutarCosulta(
             "INSERT IGNORE INTO Amigo (ID_Usuario, ID_Amigo) VALUES (?, ?)",
             [$yo, $idAmigo]
         );
+
+        $ranking = htmlRanking($c, $yo);
         $c->desconectar();
 
-        responder(true);
+        responder(true, ['ranking' => $ranking]);
     }
 
     $c->desconectar();
     responder(false, ['error' => 'Acción desconocida'], 400);
 
 } catch (Throwable $e) {
-    // Devuelve el error real (útil mientras desarrollas; quítalo en producción)
     responder(false, ['error' => $e->getMessage()], 500);
 }

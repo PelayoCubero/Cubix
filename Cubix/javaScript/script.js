@@ -69,7 +69,7 @@
 
     const list = document.getElementById('solvesList');
     list.innerHTML = '';
-    times.slice(0,8).forEach((val, i)=>{
+    times.slice(0,12).forEach((val, i)=>{
       const li = document.createElement('li');
       li.innerHTML = `<span class="n">#${times.length - i}</span><span>${val.toFixed(2)}s</span>`;
       list.appendChild(li);
@@ -109,28 +109,7 @@
     });
   });
 
-  // ---------- Cube nets (mini rejillas 3x3 decorativas por caso) ----------
-  const nets = {
-    'net-f2l-1': ['g','g','w','g','w','w','w','w','b'],
-    'net-f2l-2': ['w','r','w','w','w','g','g','w','w'],
-    'net-oll-1': ['d','d','d','d','y','d','y','d','y'],
-    'net-oll-2': ['d','y','d','d','y','d','d','y','d'],
-    'net-oll-3': ['y','y','y','y','y','y','d','d','d'],
-    'net-pll-1': ['r','r','g','b','y','b','g','r','r'],
-    'net-pll-2': ['g','o','b','r','y','r','b','o','g'],
-    'net-pll-3': ['b','r','g','o','y','o','g','r','b'],
-  };
-  const colorMap = { g:'var(--green-face)', w:'var(--white-face)', b:'var(--blue-face)', r:'var(--red-face)', o:'var(--orange-face)', y:'var(--yellow-face)', d:'#33353f' };
-  Object.keys(nets).forEach(id=>{
-    const el = document.getElementById(id);
-    if(!el) return;
-    nets[id].forEach(c=>{
-      const sq = document.createElement('div');
-      sq.style.background = colorMap[c];
-      el.appendChild(sq);
-    });
-  });
-  
+
 // ---------- limpiar inputs ----------
 
 
