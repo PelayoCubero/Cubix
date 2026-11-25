@@ -139,7 +139,7 @@
 
               $idt = (int)$item["idt"];
 
-              echo "<tr data-tiempo=\"$idt\"><td>" . htmlspecialchars($item["mezcla"]) . "</td><td class=\"mono\"> " . htmlspecialchars($item["tiempo"]) . " </td><td>" . htmlspecialchars($item["fecha"]) . "</td><td>" . htmlspecialchars($item["marca"] . " " . $item["modelo"]) . "</td><td class=\"acc\"><button type=\"button\" class=\"del-btn\" data-eliminar=\"$idt\" title=\"Eliminar tiempo\" aria-label=\"Eliminar tiempo\"><img class= \"icono-basura\" src=\"imagenes/basura.png\"></button></td></tr>";
+              echo "<tr data-tiempo=\"$idt\"><td>" . htmlspecialchars($item["mezcla"]) . "</td><td class=\"mono\"> " . htmlspecialchars($item["tiempo"]) . " </td><td>" . htmlspecialchars($item["fecha"]) . "</td><td>" . htmlspecialchars($item["marca"] . " " . $item["modelo"]) . "</td><td class=\"acc\"><button type=\"button\" class=\"del-btn\" data-eliminar=\"$idt\"><img class= \"icono\" src=\"imagenes/basura.png\"></button></td></tr>";
 
             }
 

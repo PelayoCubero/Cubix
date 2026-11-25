@@ -9,13 +9,7 @@ function fmtMejor($t) {
 
 function htmlRanking(Conexion $c, int $yo): string {
 
-    $sql = "SELECT U.ID_Usuario AS id, U.Nombre AS nom, U.Apellido AS ape, MIN(T.Tiempo) AS mejor
-            FROM Usuario U
-            LEFT JOIN Tiempo T ON T.ID_Usuario = U.ID_Usuario AND T.DNF = 0
-            WHERE U.ID_Usuario = ?
-               OR U.ID_Usuario IN (SELECT ID_Amigo FROM Amigo WHERE ID_Usuario = ?)
-            GROUP BY U.ID_Usuario, U.Nombre, U.Apellido
-            ORDER BY MIN(T.Tiempo) IS NULL, MIN(T.Tiempo) ASC, U.Nombre, U.Apellido";
+    $sql = "SELECT U.ID_Usuario AS id, U.Nombre AS nom, U.Apellido AS ape, MIN(T.Tiempo) AS mejor FROM Usuario U LEFT JOIN Tiempo T ON T.ID_Usuario = U.ID_Usuario AND T.DNF = 0 WHERE U.ID_Usuario = ? OR U.ID_Usuario IN (SELECT ID_Amigo FROM Amigo WHERE ID_Usuario = ?) GROUP BY U.ID_Usuario, U.Nombre, U.Apellido ORDER BY MIN(T.Tiempo) IS NULL, MIN(T.Tiempo) ASC, U.Nombre, U.Apellido";
 
     $ranking = $c->ejecutarCosulta($sql, [$yo, $yo]);
 
@@ -36,7 +30,7 @@ function htmlRanking(Conexion $c, int $yo): string {
         $nombre = htmlspecialchars($fila["nom"] . " " . $fila["ape"]);
         $tag    = $esYo ? "<span class=\"me-tag\">tú</span>" : "";
 
-        $html .= "<div class=\"$clases\"><span class=\"rank-num\">$numero</span><span class=\"rname\">$nombre$tag</span><span class=\"rtime" . ($mejor === null ? " sin" : "") . "\">$texto</span></div>";
+        $html .= "<div class=\"$clases\"><span class=\"rank-num\">$numero</span><span class=\"rname\">$nombre$tag</span><span class=\"rtime" . ($mejor === null ? " sin" : "") . "\">$texto</span><a href=". $fila["id"]." class=\"btn btn-outline btn-small\">Ver perfil</a></div>";
     }
 
     if (count($ranking) <= 1) {

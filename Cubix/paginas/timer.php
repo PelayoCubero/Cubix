@@ -57,7 +57,7 @@
 
         <div class="card" style ="display: flex; justify-content : center;">
 
-          <button class="btn btn-primary" onclick="showView('perfil')">ver todos mis tiempos</button>
+          <button class="btn btn-primary" onclick="showView('estadisticas')">ver todos mis tiempos</button>
 
           
         </div>

@@ -40,6 +40,9 @@
     <script src="javaScript/amigos.js"></script>
     <script src="javaScript/guardar_tiempo.js"></script>
     <script src="javaScript/eliminar_tiempo.js"></script>
+    <script src="javaScript/eliminar_tiempo.js"></script>
+    <script src="javaScript/algoritmos.js"></script>
+
 
   </body>
 </html>
