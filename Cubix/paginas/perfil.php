@@ -24,7 +24,7 @@
     </div>
 
     <div class="profile-head">
-      <div class="avatar-big"><?php echo strtoupper($_SESSION["nombre"][0]) . strtoupper($_SESSION["apellido"][0])?></div>
+      <div class="avatar-big"><?php echo htmlspecialchars(mb_strtoupper(mb_substr($_SESSION["nombre"],0,1).mb_substr($_SESSION["apellido"],0,1)))?></div>
       <div>
         <div class="pname"><?php echo $_SESSION["nombre"] . " " .$_SESSION["apellido"] . " ( " . $_SESSION["id_usuario"] . " ) "?></div>
         <div class="phandle"><?php echo $wca ?></div>

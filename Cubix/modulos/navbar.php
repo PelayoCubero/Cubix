@@ -15,9 +15,9 @@
     <button class="navbtn" data-view="perfil"><span class="navdot" style="background:var(--blue-face)"></span>Perfil</button>
   </nav>
   <div class="sidebar-footer" onclick="showView('perfil')">
-    <div class="mini-avatar"><?php echo strtoupper($_SESSION["nombre"][0]) . strtoupper($_SESSION["apellido"][0]) ?></div>
+    <div class="mini-avatar"><?php echo htmlspecialchars(mb_strtoupper(mb_substr($_SESSION["nombre"],0,1).mb_substr($_SESSION["apellido"],0,1))) ?></div>
     <div>
-      <div class="name"><?php echo $_SESSION["nombre"] . " " .$_SESSION["apellido"] ?>
+      <div class="name"><?php echo htmlspecialchars($_SESSION["nombre"] . " " . $_SESSION["apellido"]) ?>
       </div>
     </div>
   </div>

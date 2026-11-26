@@ -79,10 +79,11 @@
              echo  "<select id=\"selCubo\" style = \"width: 100%;\">";
             foreach ($datos as $item) {    
 
-              echo "<option value = ".$item["idc"].">" .$item["marca"]." ".$item["modelo"]. "</option>";
+              echo "<option value=\"" . (int)$item["idc"] . "\">" . htmlspecialchars($item["marca"]." ".$item["modelo"]) . "</option>";
             
             }
 
+            if (!$datos) { echo "<option value=\"\">Aún no tienes cubos (añádelos en tu perfil)</option>"; }
             echo  "</select>";
             
             $c->desconectar();
