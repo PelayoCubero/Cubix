@@ -60,27 +60,62 @@
     }
   }
 
+  // times[i] = tiempo real medido (es lo que se guarda en la base de datos).
+  // pens[i]  = penalización de ese intento: 'ninguna' | 'mas2' | 'dnf'.
+  let pens = [];
+
+  // Tiempo que cuenta de verdad: +2 suma 2 segundos y DNF no cuenta (Infinity).
+  function valor(i){
+    if (pens[i] === 'dnf')  return Infinity;
+    if (pens[i] === 'mas2') return times[i] + 2;
+    return times[i];
+  }
+
+  function texto(i){
+    if (pens[i] === 'dnf')  return 'DNF';
+    if (pens[i] === 'mas2') return (times[i] + 2).toFixed(2) + '+';
+    return times[i].toFixed(2);
+  }
+
   function registerSolve(t){
     times.unshift(t);
+    pens.unshift('ninguna');
+    refrescarSesion();
+  }
+
+  // Lo llama guardar_tiempo.js cuando se pulsa +2 / DNF sobre el último tiempo
+  window.setPenalizacion = function (tipo){
+    if (!times.length) return;
+    pens[0] = tipo;            // 'mas2' | 'dnf' | 'ninguna'
+    refrescarSesion();
+  };
+
+  function refrescarSesion(){
+    const validos = times.map((_, i) => valor(i)).filter(v => v !== Infinity);
     document.getElementById('countT').textContent = times.length;
-    document.getElementById('bestT').textContent = Math.min(...times).toFixed(2);
+    document.getElementById('bestT').textContent = validos.length ? Math.min(...validos).toFixed(2) : '--';
     document.getElementById('ao5').textContent = avgOf(5);
     document.getElementById('ao12').textContent = avgOf(12);
 
     const list = document.getElementById('solvesList');
     list.innerHTML = '';
-    times.slice(0,12).forEach((val, i)=>{
+    times.slice(0,12).forEach((_, i)=>{
       const li = document.createElement('li');
-      li.innerHTML = `<span class="n">#${times.length - i}</span><span>${val.toFixed(2)}s</span>`;
+      li.innerHTML = `<span class="n">#${times.length - i}</span><span>${texto(i)}${pens[i] === 'dnf' ? '' : 's'}</span>`;
       list.appendChild(li);
     });
   }
 
+  // Media de n: se descartan el mejor y el peor (el DNF cuenta como el peor).
+  // Con dos o más DNF en la muestra, el peor descartado es un DNF y queda otro dentro: media DNF.
   function avgOf(n){
     if(times.length < n) return '--';
-    const sample = times.slice(0, n);
-    const sum = sample.reduce((a,b)=>a+b,0);
-    return (sum/n).toFixed(2);
+    const muestra = [];
+    for (let i = 0; i < n; i++) muestra.push(valor(i));
+    muestra.sort((a, b) => a - b);          // Infinity (DNF) queda al final
+    const centro = muestra.slice(1, n - 1); // quita el mejor y el peor
+    if (centro.includes(Infinity)) return 'DNF';
+    return (centro.reduce((a, b) => a + b, 0) / centro.length).toFixed(2);
   }
 
   window.addEventListener('keydown', (e)=>{
@@ -109,116 +144,32 @@
     });
   });
 
-
-// ---------- limpiar inputs ----------
-
-
+// ---------- Estadísticas: "Ver más" del historial ----------
 (function () {
- 
-  var PROHIBIDOS = /[()\/\\"<>]/g;
- 
-  function limpiar(el) {
-    var original = el.value;
-    var limpio = original.replace(PROHIBIDOS, '');
-    if (original === limpio) return;
- 
-    var pos = null;
-    try { pos = el.selectionStart; } catch (e) {}
- 
-    if (pos !== null && pos !== undefined) {
-      var nuevaPos = original.slice(0, pos).replace(PROHIBIDOS, '').length;
-      el.value = limpio;
-      try { el.setSelectionRange(nuevaPos, nuevaPos); } catch (e) {}
-    } else {
-      el.value = limpio;
-    }
-  }
- 
-  var SELECTOR = 'input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=submit]):not([type=button]), textarea';
- 
-  document.addEventListener('input', function (e) {
-    if (e.target.matches(SELECTOR)) limpiar(e.target);
+  var btn = document.getElementById('verMasTiempos');
+  if (!btn) return;
+  var cuerpo = btn.closest('.card').querySelector('tbody');
+  var cargando = false;
+
+  btn.addEventListener('click', function () {
+    if (cargando) return;
+    cargando = true;
+    btn.disabled = true;
+    btn.textContent = 'Cargando…';
+
+    fetch('tiempo.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ accion: 'historial', desde: btn.dataset.desde })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.error || 'error desconocido');
+        cuerpo.insertAdjacentHTML('beforeend', r.filas);   // HTML ya escapado en el servidor
+        btn.dataset.desde = parseInt(btn.dataset.desde, 10) + r.cantidad;
+        if (!r.hay_mas) btn.hidden = true;
+      })
+      .catch(function (e) { alert('No se pudo cargar más: ' + e.message); })
+      .then(function () { cargando = false; btn.disabled = false; btn.textContent = 'Ver más'; });
   });
- 
-  document.addEventListener('submit', function (e) {
-    e.target.querySelectorAll(SELECTOR).forEach(limpiar);
-  }, true);
- 
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll(SELECTOR).forEach(limpiar);
-  });
- 
 })();
- 
-// ver contraseña limpia
-
-(function () {
-
-  var OJO = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>';
-  var OJO_TACHADO = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 19C5 19 1 12 1 12a18.5 18.5 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><path d="M14.12 14.12A3 3 0 1 1 9.88 9.88"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
-
-  var estilo = document.createElement('style');
-  estilo.textContent =
-    '.pw-wrap{position:relative;display:block;}' +
-    '.pw-wrap input{padding-right:42px !important;}' +
-    '.pw-toggle{position:absolute;top:50%;right:8px;transform:translateY(-50%);' +
-      'display:flex;align-items:center;justify-content:center;width:30px;height:30px;' +
-      'background:none;border:none;border-radius:6px;padding:0;cursor:pointer;' +
-      'color:var(--text-faint,#5c5e69);transition:color .15s;}' +
-    '.pw-toggle:hover,.pw-toggle:focus-visible{color:var(--text,#eae8e1);outline:none;}' +
-    '.pw-toggle.activo{color:var(--yellow-face,#ffd43b);}';
-  document.head.appendChild(estilo);
-
-  function añadirOjo(input) {
-    if (input.dataset.ojo) return;
-    input.dataset.ojo = '1';
-
-    var wrap = document.createElement('span');
-    wrap.className = 'pw-wrap';
-    input.parentNode.insertBefore(wrap, input);
-    wrap.appendChild(input);
-
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'pw-toggle';
-    btn.innerHTML = OJO;
-    btn.setAttribute('aria-label', 'Mostrar contraseña');
-    btn.setAttribute('aria-pressed', 'false');
-    btn.title = 'Mostrar contraseña';
-    wrap.appendChild(btn);
-
-    // Evita que el botón le quite el foco al input
-    btn.addEventListener('mousedown', function (e) { e.preventDefault(); });
-
-    btn.addEventListener('click', function () {
-      var visible = input.type === 'text';
-      input.type = visible ? 'password' : 'text';
-      btn.innerHTML = visible ? OJO : OJO_TACHADO;
-      btn.classList.toggle('activo', !visible);
-      btn.setAttribute('aria-pressed', String(!visible));
-      var txt = visible ? 'Mostrar contraseña' : 'Ocultar contraseña';
-      btn.setAttribute('aria-label', txt);
-      btn.title = txt;
-      input.focus();
-    });
-
-    // Al enviar el formulario, vuelve a ocultarla por seguridad
-    if (input.form) {
-      input.form.addEventListener('submit', function () {
-        input.type = 'password';
-      });
-    }
-  }
-
-  function iniciar() {
-    document.querySelectorAll('input[type=password]').forEach(añadirOjo);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', iniciar);
-  } else {
-    iniciar();
-  }
-
-})();
-

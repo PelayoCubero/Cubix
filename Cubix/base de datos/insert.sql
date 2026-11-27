@@ -9,77 +9,77 @@ INSERT INTO Cubo (Marca, Modelo, enlace_compra) VALUES
 -- GAN
 -- ============================================
 
-('GAN', 'GAN 11 M Pro', 'https://www.gancube.com'),
-('GAN', 'GAN 12 UI MagLev', 'https://www.gancube.com'),
-('GAN', 'GAN 14 MagLev', 'https://www.gancube.com'),
-('GAN', 'GAN 14 Pro', 'https://www.gancube.com'),
-('GAN', 'GAN 15 MagLev', 'https://www.gancube.com'),
-('GAN', 'GAN 16 MagLev', 'https://www.gancube.com'),
-('GAN', 'GAN 16 MagLev MAX', 'https://www.gancube.com'),
-('GAN', 'GAN 17 MagDrive', 'https://www.gancube.com'),
-('GAN', 'GAN V100', 'https://www.gancube.com'),
-('GAN', 'GAN 356 M', 'https://www.gancube.com'),
-('GAN', 'GAN 356 MagLev', 'https://www.gancube.com'),
-('GAN', 'GAN 356 RS', 'https://www.gancube.com'),
+('GAN', 'GAN 11 M Pro', 'https://kubekings.com/fabricantes/gan-cube'),
+('GAN', 'GAN 12 UI MagLev', 'https://kubekings.com/fabricantes/gan-cube'),
+('GAN', 'GAN 14 MagLev', 'https://www.gancube.com/blogs/product-comparisons'),
+('GAN', 'GAN 14 Pro', 'https://ukubom.com/marca/gan/page/2/'),
+('GAN', 'GAN 15 MagLev', 'https://ukubom.com/marca/gan/page/2/'),
+('GAN', 'GAN 16 MagLev', 'https://www.gancube.com/blogs/gan_news/gan-16-vs-gan-17-comparison-which-flagship-should-you-buy'),
+('GAN', 'GAN 16 MagLev MAX', 'https://kubekings.com/fabricantes/gan-cube'),
+('GAN', 'GAN 17 MagDrive', 'https://www.gancube.com/blogs/gan_news/gan-17-magdrive-flagship-overview'),
+('GAN', 'GAN V100', 'https://ukubom.com/marca/gan/page/2/'),
+('GAN', 'GAN 356 M', 'https://www.gancube.com/pages/user-manual'),
+('GAN', 'GAN 356 MagLev', 'https://www.gancube.com/pages/user-manual'),
+('GAN', 'GAN 356 RS', 'https://www.gancube.com/pages/user-manual'),
 
 -- ============================================
 -- MOYU
 -- ============================================
 
-('MoYu', 'RS3M 2020', 'https://www.moyucube.com'),
-('MoYu', 'RS3M 2021 MagLev', 'https://www.moyucube.com'),
-('MoYu', 'RS3M 2022', 'https://www.moyucube.com'),
-('MoYu', 'RS3M V5', 'https://www.moyucube.com'),
-('MoYu', 'RS3M V5 Ball Core', 'https://www.moyucube.com'),
-('MoYu', 'RS3M Super', 'https://www.moyucube.com'),
-('MoYu', 'RS3M Super V2', 'https://www.moyucube.com'),
-('MoYu', 'WeiLong WR M 2020', 'https://www.moyucube.com'),
-('MoYu', 'WeiLong WR M 2021', 'https://www.moyucube.com'),
-('MoYu', 'WeiLong WR M V9', 'https://www.moyucube.com'),
-('MoYu', 'WeiLong WR M V10', 'https://www.moyucube.com'),
-('MoYu', 'WeiLong WR M V10 Ball Core', 'https://www.moyucube.com'),
-('MoYu', 'WeiLong WR M V11', 'https://www.moyucube.com'),
-('MoYu', 'WeiLong WR M V11 SE', 'https://www.moyucube.com'),
-('MoYu', 'Super WeiLong', 'https://www.moyucube.com'),
-('MoYu', 'Super WeiLong V2', 'https://www.moyucube.com'),
-('MoYu', 'HuaMeng YS3M', 'https://www.moyucube.com'),
-('MoYu', 'AoLong V5', 'https://www.moyucube.com'),
+('MoYu', 'RS3M 2020', 'https://kubekings.com/cubos-de-rubik/'),
+('MoYu', 'RS3M 2021 MagLev', 'https://kubekings.com/cubos-de-rubik/'),
+('MoYu', 'RS3M 2022', 'https://kubekings.com/cubos-de-rubik/'),
+('MoYu', 'RS3M V5', 'https://kubekings.com/cubos-de-rubik-3x3/moyu-rs3-m-v5-3x3-spring-tension.html'),
+('MoYu', 'RS3M V5 Ball Core', 'https://kubekings.com/cubos-de-rubik-3x3/moyu-rs3-m-v5-3x3-spring-tension.html'),
+('MoYu', 'RS3M Super', 'https://kubekings.com/cubos-de-rubik/'),
+('MoYu', 'RS3M Super V2', 'https://kubekings.com/cubos-de-rubik/'),
+('MoYu', 'WeiLong WR M 2020', 'https://kubekings.com/cubos-de-rubik/'),
+('MoYu', 'WeiLong WR M 2021', 'https://kubekings.com/cubos-de-rubik/'),
+('MoYu', 'WeiLong WR M V9', 'https://kubekings.com/cubos-de-rubik-magneticos/?page=5'),
+('MoYu', 'WeiLong WR M V10', 'https://kubekings.com/cubos-de-rubik-3x3/moyu-weilong-wrm-v10-3x3.html'),
+('MoYu', 'WeiLong WR M V10 Ball Core', 'https://ukubom.com/cubo-de-rubik/cubos-3x3/moyu-weilong-wrm-v10-3x3/'),
+('MoYu', 'WeiLong WR M V11', 'https://kubekings.com/cubos-de-rubik/'),
+('MoYu', 'WeiLong WR M V11 SE', 'https://kubekings.com/cubos-de-rubik/'),
+('MoYu', 'Super WeiLong', 'https://kubekings.com/cubos-de-rubik/'),
+('MoYu', 'Super WeiLong V2', 'https://kubekings.com/cubos-de-rubik/'),
+('MoYu', 'HuaMeng YS3M', 'https://kubekings.com/cubos-de-rubik/'),
+('MoYu', 'AoLong V5', 'https://kubekings.com/cubos-de-rubik/'),
 
 -- ============================================
 -- QIYI / X-MAN
 -- ============================================
 
-('QiYi', 'MS 3x3', 'https://www.qiyitoys.com'),
-('QiYi', 'Warrior M', 'https://www.qiyitoys.com'),
-('QiYi', 'Warrior S', 'https://www.qiyitoys.com'),
-('QiYi', 'M Pro 3x3', 'https://www.qiyitoys.com'),
-('QiYi', 'M Pro V2', 'https://www.qiyitoys.com'),
-('QiYi', 'X-Man Tornado V2', 'https://www.qiyitoys.com'),
-('QiYi', 'X-Man Tornado V3', 'https://www.qiyitoys.com'),
-('QiYi', 'X-Man Tornado V3 Pioneer', 'https://www.qiyitoys.com'),
-('QiYi', 'X-Man Tornado V4', 'https://www.qiyitoys.com'),
-('QiYi', 'X-Man Tornado V4 Pioneer', 'https://www.qiyitoys.com'),
-('QiYi', 'X-Man Tornado V5', 'https://www.qiyitoys.com'),
-('QiYi', 'X-Man Tornado V5 Pioneer', 'https://www.qiyitoys.com'),
+('QiYi', 'MS 3x3', 'https://kubekings.com/cubos-de-rubik-3x3/qiyi-3x3-ms.html'),
+('QiYi', 'Warrior M', 'https://kubekings.com/cubos-de-rubik/'),
+('QiYi', 'Warrior S', 'https://kubekings.com/cubos-de-rubik/'),
+('QiYi', 'M Pro 3x3', 'https://kubekings.com/cubos-de-rubik-3x3/x-man-tornado-v3-3x3-premium-flagship-uv.html'),
+('QiYi', 'M Pro V2', 'https://kubekings.com/cubos-de-rubik/'),
+('QiYi', 'X-Man Tornado V2', 'https://kubekings.com/cubos-de-rubik/'),
+('QiYi', 'X-Man Tornado V3', 'https://kubekings.com/cubos-de-rubik-3x3/x-man-tornado-v3-3x3-premium-flagship-uv.html'),
+('QiYi', 'X-Man Tornado V3 Pioneer', 'https://kubekings.com/cubos-de-rubik-3x3/x-man-tornado-v3-3x3-premium-flagship-uv.html'),
+('QiYi', 'X-Man Tornado V4', 'https://www.brickcubes.com/product-page/3x3-qiyi-tornado-v4-x-man-flagship-magn%C3%A9tico-stickerless'),
+('QiYi', 'X-Man Tornado V4 Pioneer', 'https://kubekings.com/cubos-de-rubik-3x3/x-man-tornado-v3-3x3-premium-flagship-uv.html'),
+('QiYi', 'X-Man Tornado V5', 'https://www.juegosbesa.com/es/3x3x3/3403-qiyi-tornado-v5-3x3-flagship-uv.html'),
+('QiYi', 'X-Man Tornado V5 Pioneer', 'https://www.brickcubes.com/product-page/3x3-qiyi-tornado-v4-x-man-flagship-magn%C3%A9tico-stickerless'),
 
 -- ============================================
 -- SHENGSHOU
 -- ============================================
 
-('ShengShou', 'Mr. M 3x3', 'https://www.shengshoucube.com'),
-('ShengShou', 'Legend 3x3 M', 'https://www.shengshoucube.com'),
-('ShengShou', 'Wind 3x3 M', 'https://www.shengshoucube.com'),
-('ShengShou', 'Pioneer 3x3', 'https://www.shengshoucube.com'),
-('ShengShou', 'MeiYu 3x3 M', 'https://www.shengshoucube.com'),
+('ShengShou', 'Mr. M 3x3', 'https://kubekings.com/cubos-de-rubik-3x3/shengshou-gem-3x3.html'),
+('ShengShou', 'Legend 3x3 M', 'https://kubekings.com/cubos-de-rubik-3x3/shengshou-gem-3x3.html'),
+('ShengShou', 'Wind 3x3 M', 'https://kubekings.com/cubos-de-rubik-3x3/shengshou-gem-3x3.html'),
+('ShengShou', 'Pioneer 3x3', 'https://kubekings.com/cubos-de-rubik-3x3/shengshou-gem-3x3.html'),
+('ShengShou', 'MeiYu 3x3 M', 'https://kubekings.com/cubos-de-rubik-3x3/shengshou-gem-3x3.html'),
 
 -- ============================================
 -- MFJS / MEILONG
 -- ============================================
 
-('MFJS', 'MeiLong 3x3 M', 'https://www.moyucube.com'),
-('MFJS', 'MeiLong 3x3 V2', 'https://www.moyucube.com'),
-('MFJS', 'MeiLong 3C 3x3', 'https://www.moyucube.com'),
-('MFJS', 'MeiLong V2 M UV', 'https://www.moyucube.com'),
+('MFJS', 'MeiLong 3x3 M', 'https://kubekings.com/cubos-de-rubik-magneticos/?page=5'),
+('MFJS', 'MeiLong 3x3 V2', 'https://kubekings.com/cubos-de-rubik-magneticos/?page=5'),
+('MFJS', 'MeiLong 3C 3x3', 'https://kubekings.com/cubos-de-rubik/'),
+('MFJS', 'MeiLong V2 M UV', 'https://kubekings.com/cubos-de-rubik-magneticos/?page=5'),
 
 -- ============================================
 -- RUBIK'S
@@ -337,5 +337,5 @@ INSERT INTO Usuario
 ('Ana', 'Rodriguez', 'ana.rodriguez@gmail.com', 'ana123', '2022RODR06'),
 ('Pablo', 'Gomez', 'pablo.gomez@gmail.com', 'pablo123', '2023GOME07'),
 ('Top 0', 'Del universo', 'rubenrodcerr@gmail.com', '123456', NULL),
+('root', 'toor', 'root@root.es', '123456', NULL),
 ('Laura', 'Diaz', 'laura.diaz@gmail.com', 'laura123', NULL);
-

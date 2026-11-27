@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/modulos/seguridad.php';
 header('Content-Type: application/json; charset=utf-8');
 
 function responder($ok, $extra = [], $codigo = 200) {
@@ -11,7 +11,10 @@ function responder($ok, $extra = [], $codigo = 200) {
 if (!isset($_SESSION['id_usuario'])) responder(false, ['error' => 'Sesión no iniciada'], 403);
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') responder(false, ['error' => 'Método no permitido'], 405);
 
-try {
+
+if (!csrf_valido()) {
+    responder(false, ['error' => 'Token de seguridad no válido: recarga la página'], 403);
+}try {
     include("./Conexion/Conexion.php");
 
     $yo  = (int)$_SESSION['id_usuario'];
@@ -41,5 +44,6 @@ try {
     responder(true, ['sabido' => $sabido]);
 
 } catch (Throwable $e) {
-    responder(false, ['error' => $e->getMessage()], 500);
+    registrar_error($e);
+    responder(false, ['error' => 'Error interno del servidor'], 500);
 }

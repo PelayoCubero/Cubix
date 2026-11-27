@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require_once __DIR__ . '/modulos/seguridad.php';
     $_SESSION = [];
     session_destroy();
     header('Location: index.php');

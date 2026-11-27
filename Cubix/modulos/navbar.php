@@ -1,5 +1,5 @@
 <aside class="sidebar">
-  <div class="brand">
+  <div class="brand" onclick="showView('dashboard')">
     <div class="scene"><div class="cube3d">
       <div class="f front"></div><div class="f back"></div><div class="f right"></div>
       <div class="f left"></div><div class="f top"></div><div class="f bottom"></div>
@@ -22,6 +22,3 @@
     </div>
   </div>
 </aside>
-
-
-

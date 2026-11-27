@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/modulos/seguridad.php';
 
 if (isset($_SESSION['id_usuario'])) {
     header('Location: main.php');
@@ -17,7 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'] ?? '';
     $password2 = $_POST['password2'] ?? '';
 
-    if ($nombre === '' || $apellido === '' || $correo === '' || $password === '') {
+    if (!csrf_valido()) {
+        $error = 'La sesión ha caducado. Vuelve a intentarlo.';
+    } elseif ($nombre === '' || $apellido === '' || $correo === '' || $password === '') {
         $error = 'Rellena todos los campos obligatorios.';
     } elseif (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
         $error = 'El correo no es válido.';
@@ -42,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $c->ejecutarCosulta(
                 "INSERT INTO Usuario (Nombre, Apellido, Correo, Contraseña, WCA_ID) VALUES (?, ?, ?, ?, ?)",
-                [$nombre, $apellido, $correo, $password, $wca === '' ? null : $wca]
+                [$nombre, $apellido, $correo, password_hash($password, PASSWORD_DEFAULT), $wca === '' ? null : $wca]
             );
 
             $nuevo = $c->ejecutarCosulta("SELECT ID_Usuario AS id FROM Usuario WHERE Correo = ?", [$correo]);
@@ -72,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <body>
 
     <form class="login-card" method="POST" action="registro.php" autocomplete="on">
+      <?= csrf_campo() ?>
       <div class="login-logo">
         <img src="imagenes/logo.png" alt="Cubix">
         <div class="brand-name">Cubix</div>
@@ -119,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="alt-link">¿Ya tienes cuenta? <a href="index.php">Inicia sesión</a></div>
     </form>
 
+    <script src="javaScript/seguridad.js"></script>
     <script src="javaScript/script.js"></script>
 
   </body>

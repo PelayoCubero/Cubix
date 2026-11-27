@@ -38,7 +38,7 @@
   $c = new Conexion();
   $c->conectar();
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["anadir_cubo"])) {
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["anadir_cubo"]) && csrf_valido()) {
       $idCubo = (int)$_POST["anadir_cubo"];
       $existe = $c->ejecutarCosulta("SELECT 1 FROM Cubo WHERE ID_Cubo = ?", [$idCubo]);
       if ($existe) {
@@ -57,6 +57,7 @@
 <h2>Vitrina de cubos</h2>
 
 <form method="POST" style="display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 20px;">
+  <?= csrf_campo() ?>
 
   <select id="filtroMarca" required>
     <option value="">Marca…</option>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/modulos/seguridad.php';
 
 if (isset($_SESSION['id_usuario'])) {
     header('Location: main.php');
@@ -13,7 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $correo = trim($_POST['correo'] ?? '');
     $password = $_POST['password'] ?? '';
 
-    if ($correo === '' || $password === '') {
+    if (!csrf_valido()) {
+        $error = 'La sesión ha caducado. Vuelve a intentarlo.';
+    } elseif (($_SESSION['bloqueo_hasta'] ?? 0) > time()) {
+        $error = 'Demasiados intentos. Espera ' . ($_SESSION['bloqueo_hasta'] - time()) . ' segundos.';
+    } elseif ($correo === '' || $password === '') {
         $error = 'Rellena el correo y la contraseña.';
     } else {
         include("./Conexion/Conexion.php");
@@ -21,10 +25,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $c = new Conexion();
         $c->conectar();
         $res = $c->ejecutarCosulta("SELECT ID_Usuario AS id, Nombre AS nom, Apellido AS ape, Contraseña AS pass FROM Usuario WHERE Correo = ?",[$correo]);
+
+        $valida = false;
+        if (!empty($res)) {
+            $guardada = (string)$res[0]['pass'];
+            if (preg_match('/^\$(2y|argon2)/', $guardada)) {
+                $valida = password_verify($password, $guardada);
+            } elseif (hash_equals($guardada, $password)) {
+                // Contraseña antigua guardada en claro: entra y se guarda ya cifrada
+                $valida = true;
+                $c->ejecutarCosulta("UPDATE Usuario SET Contraseña = ? WHERE ID_Usuario = ?",
+                    [password_hash($password, PASSWORD_DEFAULT), (int)$res[0]['id']]);
+            }
+        }
         $c->desconectar();
 
-        if (!empty($res) && hash_equals((string)$res[0]['pass'], $password)) {
+        if ($valida) {
             session_regenerate_id(true);
+            unset($_SESSION['intentos'], $_SESSION['bloqueo_hasta']);
             $_SESSION['id_usuario'] = (int)$res[0]['id'];
             $_SESSION['nombre'] = $res[0]['nom'];
             $_SESSION['apellido'] = $res[0]['ape'];
@@ -32,6 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
 
+        // Freno sencillo: 5 fallos seguidos -> 60 segundos de espera
+        $_SESSION['intentos'] = ($_SESSION['intentos'] ?? 0) + 1;
+        if ($_SESSION['intentos'] >= 5) {
+            $_SESSION['bloqueo_hasta'] = time() + 60;
+            $_SESSION['intentos'] = 0;
+        }
         $error = 'Correo o contraseña incorrectos.';
     }
 }
@@ -48,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <body>
 
   <form class="login-card" method="POST" action="index.php" autocomplete="on">
+    <?= csrf_campo() ?>
     <div class="login-logo">
       <img src="imagenes/logo.png" alt="Cubix">
       <div class="brand-name">Cubix</div>
@@ -75,6 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
   </form>
 
+  <script src="javaScript/seguridad.js"></script>
   <script src="javaScript/script.js"></script>
 
   </body>

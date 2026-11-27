@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+require_once __DIR__ . '/modulos/seguridad.php';
 
 if (!isset($_SESSION['id_usuario'])) {
     header('Location: index.php');
@@ -8,7 +8,6 @@ if (!isset($_SESSION['id_usuario'])) {
 }
 
 include("./Conexion/Conexion.php");
-
 
 $id = (int)($_GET['id'] ?? 0);
 
@@ -54,17 +53,9 @@ $base = htmlspecialchars(rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/');
     $nAlgos = (int)$c->ejecutarCosulta(
         "SELECT COUNT(*) AS n FROM Usuario_Algoritmo WHERE ID_Usuario = ?", [$id])[0]['n'];
 
-    $cubos = $c->ejecutarCosulta(
-        "SELECT C.Marca AS marca, C.Modelo AS modelo
-         FROM Usuario_Cubo UC JOIN Cubo C ON C.ID_Cubo = UC.ID_Cubo WHERE UC.ID_Usuario = ?", [$id]);
+    $cubos = $c->ejecutarCosulta("SELECT C.Marca AS marca, C.Modelo AS modelo, C.enlace_compra as Compra FROM Usuario_Cubo UC JOIN Cubo C ON C.ID_Cubo = UC.ID_Cubo WHERE UC.ID_Usuario = ?", [$id]);
 
-    $tiempos = $c->ejecutarCosulta(
-        "SELECT CASE WHEN T.Tiempo >= '00:01:00'
-                     THEN CONCAT(TIME_FORMAT(T.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2))
-                     ELSE CONCAT(TIME_FORMAT(T.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2))
-                END AS tiempo, T.DNF AS dnf, T.Fecha AS fecha, C.Marca AS marca, C.Modelo AS modelo
-         FROM Tiempo T JOIN Cubo C ON T.ID_Cubo = C.ID_Cubo
-         WHERE T.ID_Usuario = ? ORDER BY T.Fecha DESC, T.ID_Tiempo DESC LIMIT 5", [$id]);
+    $tiempos = $c->ejecutarCosulta("SELECT CASE WHEN T.Tiempo >= '00:01:00' THEN CONCAT(TIME_FORMAT(T.Tiempo, '%i:%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2)) ELSE CONCAT(TIME_FORMAT(T.Tiempo, '%S'), '.', LEFT(DATE_FORMAT(T.Tiempo, '%f'), 2)) END AS tiempo, T.DNF AS dnf, T.Fecha AS fecha, T.Mezcla as mezcla, C.Marca AS marca, C.Modelo AS modelo FROM Tiempo T JOIN Cubo C ON T.ID_Cubo = C.ID_Cubo WHERE T.ID_Usuario = ? ORDER BY T.Fecha DESC, T.ID_Tiempo DESC LIMIT 5", [$id]);
     $c->desconectar();
 ?>
       <section class="view active" id="perfil">
@@ -91,27 +82,28 @@ $base = htmlspecialchars(rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/');
         <h2>Vitrina de cubos</h2>
         <div class="cube-shelf">
           <?php foreach ($cubos as $item): $marca = strtolower($item['marca']); ?>
-            <div class="cube-item">
+            <div class="cube-item"><a target="_blank" href="<?php echo $item['Compra']?>">
               <div class="cube-logo"><img src="imagenes/<?= htmlspecialchars($marca) ?>.png" alt=""></div>
-              <div class="cname"><?= htmlspecialchars($item['marca'] . ' ' . $item['modelo']) ?></div>
+              <div class="cname"><?= htmlspecialchars($item['marca'] . ' ' . $item['modelo']) ?></div></a>
             </div>
           <?php endforeach; ?>
           <?php if (!$cubos): ?><p style="color:var(--text-dim)">Aún no tiene cubos.</p><?php endif; ?>
         </div>
 
-        <h2>Últimos tiempos</h2>
+        <h2>Últimos 5 tiempos</h2>
         <div class="card">
           <table>
-            <thead><tr><th>Tiempo</th><th>Fecha</th><th>Cubo</th></tr></thead>
+            <thead><tr><th>Tiempo</th><th>Fecha</th><th>Cubo</th><th>Mezcla</th></tr></thead>
             <tbody>
               <?php foreach ($tiempos as $t): ?>
                 <tr>
                   <td class="mono"><?= $t['dnf'] ? 'DNF' : htmlspecialchars($t['tiempo']) ?></td>
                   <td><?= htmlspecialchars($t['fecha']) ?></td>
                   <td><?= htmlspecialchars($t['marca'] . ' ' . $t['modelo']) ?></td>
+                  <td><?= htmlspecialchars($t['mezcla']) ?></td>
                 </tr>
               <?php endforeach; ?>
-              <?php if (!$tiempos): ?><tr><td colspan="3" class="vacio">Aún no tiene tiempos guardados.</td></tr><?php endif; ?>
+              <?php if (!$tiempos): ?><tr><td colspan="4" class="vacio">Aún no tiene tiempos guardados.</td></tr><?php endif; ?>
             </tbody>
           </table>
         </div>

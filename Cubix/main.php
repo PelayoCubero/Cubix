@@ -1,6 +1,6 @@
 <?php
 
-    session_start();
+    require_once __DIR__ . '/modulos/seguridad.php';
 
     if (!isset($_SESSION['id_usuario'])) {
         header('Location: index.php');
@@ -36,13 +36,12 @@
     
     </main>
 
+    <script src="javaScript/seguridad.js"></script>
     <script src="javaScript/script.js"></script>
     <script src="javaScript/amigos.js"></script>
     <script src="javaScript/guardar_tiempo.js"></script>
     <script src="javaScript/eliminar_tiempo.js"></script>
-    <script src="javaScript/eliminar_tiempo.js"></script>
     <script src="javaScript/algoritmos.js"></script>
-
 
   </body>
 </html>

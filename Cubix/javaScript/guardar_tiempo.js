@@ -84,7 +84,7 @@
       mas2: nueva === 'mas2' ? 1 : 0,
       dnf: nueva === 'dnf' ? 1 : 0
     }).then(function (r) {
-      if (r.ok) { penal = nueva; refrescarBotones(); }
+      if (r.ok) { penal = nueva; refrescarBotones(); if (window.setPenalizacion) window.setPenalizacion(nueva); }
       else { mostrarError(r.error || 'error desconocido'); }
     }).catch(function (e) {
       mostrarError(e.message);
