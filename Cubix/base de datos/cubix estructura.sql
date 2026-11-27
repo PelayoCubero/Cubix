@@ -55,7 +55,7 @@ CREATE TABLE Usuario (
     Nombre          VARCHAR(50) NOT NULL,
     Apellido        VARCHAR(50) NOT NULL,
     Correo          VARCHAR(100) NOT NULL UNIQUE,
-    Contraseña      VARCHAR(50) NOT NULL,
+    Contraseña      VARCHAR(255) NOT NULL,
     WCA_ID          VARCHAR(50)
 
 );
